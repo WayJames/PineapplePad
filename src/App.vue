@@ -1,29 +1,50 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <router-link to="/" class="navbar-item">How it works</router-link>
+          <router-link to="/" class="navbar-item">What they say</router-link>
+          <router-link to="/" class="navbar-item">Apartment ratings</router-link>
+        </div>
+        <navbar-user-button @loginClicked="$router.push('login')" />
+      </div>
+    </nav>
+    <b-modal :active.sync="isLoginModalOpen" has-modal-card>
+      <modal-login-form></modal-login-form>
+    </b-modal>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import ModalLoginForm from './components/ModalLoginForm.vue'
+import NavbarUserButton from './components/NavbarUserButton.vue'
+
+export default {
+  components: {
+    ModalLoginForm,
+    NavbarUserButton
+  },
+  data () {
+    return {
+      isLoginModalOpen: false
     }
   }
 }
+</script>
+
+<style lang="scss">
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
 </style>
