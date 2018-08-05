@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
+import SignUp from './views/SignUp.vue'
 import Profile from './views/Profile.vue'
 import ForcePasswordChange from './views/ForcePasswordChange.vue'
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: SignUp
     },
     {
       path: '/profile',

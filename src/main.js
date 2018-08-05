@@ -6,7 +6,6 @@ import Buefy from 'buefy'
 import Amplify from 'aws-amplify'
 import exports from './aws-exports'
 
-console.log(window.localStorage)
 Amplify.configure(exports)
 
 store.dispatch('updateUser')
