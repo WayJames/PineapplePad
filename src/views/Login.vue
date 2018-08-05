@@ -33,7 +33,11 @@
                 <div class="level">
                   <div class="level-left">
                     <div class="level-item">
-                      <a class="has-text-black" @click="forgotPassword()">Forgot password?</a><br />
+                      <a class="has-text-black" v-if="pwResetMode" @click="pwResetMode = false">Cancel</a>
+                      <a class="has-text-black" v-else @click="forgotPassword()">Forgot password?</a>
+                    </div>
+                    <div class="level-item">
+                      <router-link class="has-text-black" to="register">Register</router-link>
                     </div>
                   </div>
                   <div class="level-right">

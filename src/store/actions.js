@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify'
+import { Auth, API } from 'aws-amplify'
 
 export default {
   async signOut ({ commit }) {
@@ -48,6 +48,19 @@ export default {
   async resetPassword (context, { username, password, code }) {
     try {
       return await Auth.forgotPasswordSubmit(username, code, password)
+    } catch (err) {
+      throw err
+    }
+  },
+  async signUp (context, {username, password, attributes}) {
+    try {
+      let user = await Auth.signUp({
+        username,
+        password,
+        attributes: attributes.cognito
+      })
+      await API.post('account_attributesCRUD', '/account_attributes', {body: attributes.db})
+      return user
     } catch (err) {
       throw err
     }
