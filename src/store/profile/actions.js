@@ -1,4 +1,5 @@
 import { Auth, API } from 'aws-amplify'
+import router from '@/router'
 
 export default {
   async signOut ({ commit }) {
@@ -52,15 +53,35 @@ export default {
       throw err
     }
   },
-  async signUp (context, {username, password, attributes}) {
+  async signUp (context, args) {
     try {
-      let user = await Auth.signUp({
-        username,
-        password,
-        attributes: attributes.cognito
-      })
-      await API.post('account_attributesCRUD', '/account_attributes', {body: attributes.db})
+      let user = await Auth.signUp(args)
+      if (!user.userConfirmed) {
+        router.push('confirm_account')
+      }
       return user
+    } catch (err) {
+      throw err
+    }
+  },
+  async submitVerificationCode (context, {username, code}) {
+    try {
+      let resp = await Auth.confirmSignUp(username, code)
+      router.push('gather_user_attributes')
+      return resp
+    } catch (err) {
+      switch (err.code) {
+        case 'UserNotFoundException':
+          err.message = 'User not found.'
+          break
+      }
+      throw err
+    }
+  },
+  async submitApartmentAttributes (context, attributes) {
+    try {
+      let resp = await API.post('account_attributesCRUD', '/account_attributes', {body: attributes})
+      return resp
     } catch (err) {
       throw err
     }

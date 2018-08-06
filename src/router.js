@@ -5,6 +5,8 @@ import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
 import Profile from './views/Profile.vue'
 import ForcePasswordChange from './views/ForcePasswordChange.vue'
+import ConfirmAccount from './views/ConfirmAccount.vue'
+import GatherUserData from './views/GatherUserData.vue'
 
 Vue.use(Router)
 
@@ -35,6 +37,16 @@ export default new Router({
       path: '/forcepasswordchange',
       name: 'force_password_change',
       component: ForcePasswordChange
+    },
+    {
+      path: '/register/confirm',
+      name: 'confirm_account',
+      component: ConfirmAccount
+    },
+    {
+      path: '/register/collectdata',
+      name: 'gather_user_data',
+      component: GatherUserData
     }
   ]
 })

@@ -17,7 +17,8 @@
           <router-link to="/" class="navbar-item">What they say</router-link>
           <router-link to="/" class="navbar-item">Apartment ratings</router-link>
         </div>
-        <navbar-user-button @loginClicked="$router.push('login')" />
+        <!-- TODO: change this to use the name instead of path. -->
+        <navbar-user-button @loginClicked="$router.push('/login')" />
       </div>
     </nav>
     <b-modal :active.sync="isLoginModalOpen" has-modal-card>
