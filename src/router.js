@@ -8,45 +8,79 @@ import ForcePasswordChange from './views/ForcePasswordChange.vue'
 import ConfirmAccount from './views/ConfirmAccount.vue'
 import GatherUserData from './views/GatherUserData.vue'
 
+import store from './store'
+
+/* eslint-disable */
+const AUTH_LEVEL_NONE = 0
+const AUTH_LEVEL_USER = 1
+const AUTH_LEVEL_ADMIN = 2
+const AUTH_LEVEL_SUPERADMIN = 3
+/* eslint-enable */
+
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
       name: 'home',
+      meta: {authLevel: AUTH_LEVEL_NONE},
       component: Home
     },
     {
       path: '/login',
       name: 'login',
+      meta: {authLevel: AUTH_LEVEL_NONE},
       component: Login
     },
     {
       path: '/register',
       name: 'register',
+      meta: {authLevel: AUTH_LEVEL_NONE},
       component: SignUp
     },
     {
       path: '/profile',
       name: 'profile',
-      component: Profile
+      component: Profile,
+      meta: {authLevel: AUTH_LEVEL_USER}
     },
     {
       path: '/forcepasswordchange',
       name: 'force_password_change',
+      meta: {authLevel: AUTH_LEVEL_NONE},
       component: ForcePasswordChange
     },
     {
       path: '/register/confirm',
       name: 'confirm_account',
-      component: ConfirmAccount
+      component: ConfirmAccount,
+      meta: {authLevel: AUTH_LEVEL_NONE}
     },
     {
       path: '/register/collectdata',
       name: 'gather_user_data',
-      component: GatherUserData
+      component: GatherUserData,
+      meta: {authLevel: AUTH_LEVEL_USER}
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authLevel >= AUTH_LEVEL_USER)) {
+    // this route requires auth, check to make sure signed in
+    if (!store.getters.userSignedIn) {
+      next({
+        name: 'login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

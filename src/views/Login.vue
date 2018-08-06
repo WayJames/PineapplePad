@@ -97,6 +97,8 @@ export default {
           console.log(usr)
           if (usr.challengeName === 'NEW_PASSWORD_REQUIRED') {
             this.$router.push({ name: 'force_password_change' })
+          } else if (this.$router.currentRoute.query.redirect) {
+            this.$router.push(this.$router.currentRoute.query.redirect)
           } else {
             this.$router.push({ name: 'profile' })
           }
