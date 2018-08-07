@@ -17,7 +17,6 @@
               <div class="tile is-parent is-vertical">
                 <article class="tile is-child notification is-primary">
                   <p class="title">Ask for help</p>
-                  <p class="subtitle">It's ok!</p>
                 </article>
                 <article class="tile is-child notification is-warning">
                   <change-password-component v-bind="changePass.errorState" @submit="submitChangePassword" />
@@ -33,8 +32,8 @@
             </div>
             <div class="tile is-parent">
               <article class="tile is-child notification is-link">
-                <p class="title">Apartment Info</p>
-                <p class="subtitle">Where do you want to live?</p>
+                <p class="title">Living Preferences</p>
+                <p class="subtitle">Help us help you find a new pad.</p>
                 <div class="content">
                   <!-- Content -->
                 </div>

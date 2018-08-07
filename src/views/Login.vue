@@ -62,8 +62,8 @@ export default {
     return {
       pwReset: false,
       errorMessage: '',
-      username: 'daniel.heppner1@gmail.com',
-      password: 'Jf>YWanq',
+      username: '',
+      password: '',
       displayErrorMessage: false,
       resetCode: '',
       pwResetMode: false,
