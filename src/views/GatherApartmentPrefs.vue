@@ -85,11 +85,14 @@ export default {
       return DateTime.fromJSDate(date).toLocaleString()
     },
     submit () {
+      this.loading = true
       let luxonObj = DateTime.fromJSDate(this.move_in_date_object)
       this.attributes.move_in_date = luxonObj.toISODate()
       this.$store.dispatch('submitApartmentPrefs', this.attributes).then(resp => {
+        this.loading = false
         console.log(resp)
       }).catch(err => {
+        this.loading = false
         console.log(err)
       })
     }
