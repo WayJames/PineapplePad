@@ -18,8 +18,8 @@
                 <b-notification type="is-danger" :active.sync="displayErrorMessage">
                   {{errorMessage}}
                 </b-notification>
-                <b-field label="Email">
-                  <b-input type="username" v-model="username" placeholder="Your email" required>
+                <b-field label="Username">
+                  <b-input type="username" v-model="username" placeholder="Your Username" required>
                   </b-input>
                 </b-field>
                 <b-field v-if="pwResetMode" label="Reset Code">
@@ -103,6 +103,11 @@ export default {
           }
           this.displayErrorMessage = false
         }).catch(err => {
+          if (err.code === 'UserNotConfirmedException') {
+            this.$snackbar.open('Please verify your email address before continuing.')
+            this.$store.commit('storePasswordTemporarily', this.password)
+            this.$router.push({name: 'confirm_account', params: {username: this.username}})
+          }
           this.loading = false
           this.errorMessage = err.message
           this.displayErrorMessage = true

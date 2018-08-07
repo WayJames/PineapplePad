@@ -69,13 +69,16 @@ export default {
   async submitVerificationCode ({dispatch, state}, {username, code}) {
     try {
       let resp = await Auth.confirmSignUp(username, code)
-      try {
-        await dispatch('signIn', {username, password: state.passwordTemporaryStorage})
-        router.push({name: 'gather_user_data'})
-      } catch (err) {
-        console.log(err)
-        err.message = 'An unexpcted error occurred. Please contact us.'
-        throw err
+      // Confirming sign up doesn't log the user in.
+      // So we do this to seamlessly sign the user in behind the scenes
+      if (state.passwordTemporaryStorage) {
+        try {
+          await dispatch('signIn', {username, password: state.passwordTemporaryStorage})
+          router.push({name: 'gather_user_data'})
+        } catch (err) {
+          err.message = 'An unexpcted error occurred. Please contact us.'
+          throw err
+        }
       }
       return resp
     } catch (err) {
