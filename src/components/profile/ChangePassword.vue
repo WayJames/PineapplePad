@@ -42,7 +42,6 @@ export default {
       return this.oldPass.length && this.newPass.length && this.newConfirm.length
     },
     passwordsMatch () {
-      console.log(this.newPass === this.newConfirm)
       return this.newPass === this.newConfirm
     },
     formValid () {

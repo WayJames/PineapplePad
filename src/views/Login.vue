@@ -94,7 +94,6 @@ export default {
           password: this.password
         }).then(usr => {
           this.loading = false
-          console.log(usr)
           if (usr.challengeName === 'NEW_PASSWORD_REQUIRED') {
             this.$router.push({ name: 'force_password_change' })
           } else if (this.$router.currentRoute.query.redirect) {
