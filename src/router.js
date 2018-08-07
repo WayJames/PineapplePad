@@ -6,7 +6,7 @@ import SignUp from './views/SignUp.vue'
 import Profile from './views/Profile.vue'
 import ForcePasswordChange from './views/ForcePasswordChange.vue'
 import ConfirmAccount from './views/ConfirmAccount.vue'
-import GatherUserData from './views/GatherUserData.vue'
+import GatherApartmentPrefs from './views/GatherApartmentPrefs.vue'
 
 import store from './store'
 
@@ -53,7 +53,7 @@ let router = new Router({
       component: ForcePasswordChange
     },
     {
-      path: '/register/confirm',
+      path: '/register/confirm/:username',
       name: 'confirm_account',
       component: ConfirmAccount,
       meta: {authLevel: AUTH_LEVEL_NONE}
@@ -61,7 +61,7 @@ let router = new Router({
     {
       path: '/register/collectdata',
       name: 'gather_user_data',
-      component: GatherUserData,
+      component: GatherApartmentPrefs,
       meta: {authLevel: AUTH_LEVEL_USER}
     }
   ]

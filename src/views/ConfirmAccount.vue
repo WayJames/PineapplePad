@@ -31,17 +31,21 @@ export default {
       displayErrorMessage: false,
       errorMessage: '',
       code: '',
-      username: '',
+      username: this.$route.params.username,
       loading: false
     }
   },
   methods: {
     submit () {
+      this.loading = true
       this.$store.dispatch('submitVerificationCode', {
         username: this.username,
         code: this.code
       }).then((resp) => {
+        this.loading = false
+        this.$snackbar.open('Account verified successfully!')
       }).catch(err => {
+        this.loading = false
         this.errorMessage = err.message
         this.displayErrorMessage = true
       })

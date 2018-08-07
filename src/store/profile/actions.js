@@ -4,6 +4,7 @@ import router from '@/router'
 export default {
   async signOut ({ commit }) {
     await Auth.signOut()
+    router.push('/')
     commit('setUser', null)
   },
   async updateUser ({ commit, dispatch }) {
@@ -53,21 +54,29 @@ export default {
       throw err
     }
   },
-  async signUp (context, args) {
+  async signUp ({commit}, args) {
     try {
       let user = await Auth.signUp(args)
       if (!user.userConfirmed) {
-        router.push('confirm_account')
+        commit('storePasswordTemporarily', args.password)
+        router.push({name: 'confirm_account', params: {username: args.username}})
       }
       return user
     } catch (err) {
       throw err
     }
   },
-  async submitVerificationCode (context, {username, code}) {
+  async submitVerificationCode ({dispatch, state}, {username, code}) {
     try {
       let resp = await Auth.confirmSignUp(username, code)
-      router.push('gather_user_attributes')
+      try {
+        await dispatch('signIn', {username, password: state.passwordTemporaryStorage})
+        router.push({name: 'gather_user_data'})
+      } catch (err) {
+        console.log(err)
+        err.message = 'An unexpcted error occurred. Please contact us.'
+        throw err
+      }
       return resp
     } catch (err) {
       switch (err.code) {
@@ -78,9 +87,10 @@ export default {
       throw err
     }
   },
-  async submitApartmentAttributes (context, attributes) {
+  async submitApartmentPrefs (context, attributes) {
     try {
       let resp = await API.post('account_attributesCRUD', '/account_attributes', {body: attributes})
+      router.push({name: 'profile'})
       return resp
     } catch (err) {
       throw err

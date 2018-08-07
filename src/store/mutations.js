@@ -4,5 +4,8 @@ export default {
     if (user == null) {
       state.transactionData = []
     }
+  },
+  storePasswordTemporarily (state, password) {
+    state.passwordTemporaryStorage = password
   }
 }

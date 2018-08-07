@@ -73,7 +73,7 @@ export default {
       var args = { attributes: this.attributes, username: this.username, password: this.password }
       this.$store.dispatch('signUp', args)
         .then((resp) => {
-          console.log(resp)
+          this.$snackbar.open('Account registered successfully. Please verify your email address.')
           this.loading = false
         })
         .catch((err) => {
