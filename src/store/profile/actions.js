@@ -7,13 +7,14 @@ export default {
     router.push('/')
     commit('setUser', null)
   },
-  async updateUser ({ commit, dispatch }) {
+  async updateUser ({ commit }) {
     try {
       let user = await Auth.currentAuthenticatedUser()
       commit('setUser', user)
       return user
     } catch (err) {
-      dispatch('signOut')
+      commit('setUser', null)
+      throw err
     }
   },
   async signIn ({ commit }, { username, password }) {

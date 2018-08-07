@@ -74,6 +74,7 @@ export default {
     }
   },
   methods: {
+
     submitChangePassword (data) {
       console.log(data)
       this.$store.dispatch('changePassword', { oldPass: data.oldPass, newPass: data.newPass })

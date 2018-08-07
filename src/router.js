@@ -7,8 +7,9 @@ import Profile from './views/Profile.vue'
 import ForcePasswordChange from './views/ForcePasswordChange.vue'
 import ConfirmAccount from './views/ConfirmAccount.vue'
 import GatherApartmentPrefs from './views/GatherApartmentPrefs.vue'
-
 import store from './store'
+
+import {Auth} from 'aws-amplify'
 
 /* eslint-disable */
 const AUTH_LEVEL_NONE = 0
@@ -70,13 +71,17 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.authLevel >= AUTH_LEVEL_USER)) {
     // this route requires auth, check to make sure signed in
-    if (!store.getters.userSignedIn) {
-      next({
-        name: 'login',
-        query: { redirect: to.fullPath }
-      })
-    } else {
+    if (store.getters.userSignedIn) {
       next()
+    } else {
+      Auth.currentAuthenticatedUser().then(usr => {
+        next()
+      }).catch(() => {
+        next({
+          name: 'login',
+          query: { redirect: to.fullPath }
+        })
+      })
     }
   } else {
     next()
