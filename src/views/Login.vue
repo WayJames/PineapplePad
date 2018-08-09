@@ -91,16 +91,10 @@ export default {
         this.loading = true
         this.$store.dispatch('signIn', {
           username: this.username,
-          password: this.password
+          password: this.password,
+          redirect: this.$router.currentRoute.query.redirect
         }).then(usr => {
           this.loading = false
-          if (usr.challengeName === 'NEW_PASSWORD_REQUIRED') {
-            this.$router.push({ name: 'force_password_change' })
-          } else if (this.$router.currentRoute.query.redirect) {
-            this.$router.push(this.$router.currentRoute.query.redirect)
-          } else {
-            this.$router.push({ name: 'profile' })
-          }
           this.displayErrorMessage = false
         }).catch(err => {
           if (err.code === 'UserNotConfirmedException') {
