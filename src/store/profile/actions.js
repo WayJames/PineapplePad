@@ -119,8 +119,10 @@ export default {
       let resp = await API.get('account_attributesCRUD', '/account_attributes')
       if (resp.length) {
         commit('setApartmentPrefs', resp[0])
+      } else {
+        throw resp
       }
-      return resp
+      return resp[0]
     } catch (err) {
       throw err
     }
