@@ -1,66 +1,48 @@
-<template>
-  <div>
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            User Profile
-          </h1>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="tile is-ancestor">
-          <div class="tile is-vertical is-8">
-            <div class="tile">
-              <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-primary">
-                  <p class="title">Ask for help</p>
-                </article>
-                <article class="tile is-child notification is-warning">
-                  <change-password-component v-bind="changePass.errorState" @submit="submitChangePassword" />
-                </article>
-              </div>
-              <div class="tile is-parent">
-                <article class="tile is-child notification is-info">
-                  <p class="title">Your Info</p>
-                  <p class="subtitle">Your personal stuff.</p>
+<template lang="pug">
+div
+  section.hero.is-primary.is-bold
+    .hero-body
+      .container
+        h1.title.
+          User Profile
+  section.section
+    .container
+      .tile.is-ancestor
+        .tile.is-vertical.is-8
+          .tile
+            .tile.is-parent.is-vertical
+              article.tile.is-child.notification.is-primary
+                p.title Ask for help
+              article.tile.is-child.notification.is-warning
+                change-password-component(v-bind='changePass.errorState', @submit='submitChangePassword')
+            .tile.is-parent
+              article.tile.is-child.notification.is-info
+                p.title Your Info
+                p.subtitle Your personal stuff.
+                user-info-component
+          .tile.is-parent
+            article.tile.is-child.notification.is-link
+              p.title Living Preferences
+              p.subtitle Help us help you find a new pad.
+              .content
+                // Content
+        .tile.is-parent
+          article.tile.is-child.notification.is-success
+            p.title Apartment Info
+            p.subtitle Where do you want to live?
+            .content
+              apartment-prefs-component
 
-                </article>
-              </div>
-            </div>
-            <div class="tile is-parent">
-              <article class="tile is-child notification is-link">
-                <p class="title">Living Preferences</p>
-                <p class="subtitle">Help us help you find a new pad.</p>
-                <div class="content">
-                  <!-- Content -->
-                </div>
-              </article>
-            </div>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification is-success">
-              <p class="title">Apartment Info</p>
-              <p class="subtitle">Where do you want to live?</p>
-              <div class="content">
-                <apartment-prefs-component/>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
 </template>
 <script>
 import ChangePasswordComponent from '@/components/profile/ChangePassword.vue'
 import ApartmentPrefsComponent from '@/components/profile/ApartmentPrefs.vue'
+import UserInfoComponent from '@/components/profile/UserInfo.vue'
 export default {
   components: {
     ChangePasswordComponent,
-    ApartmentPrefsComponent
+    ApartmentPrefsComponent,
+    UserInfoComponent
   },
   data () {
     return {
