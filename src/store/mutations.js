@@ -7,5 +7,8 @@ export default {
   },
   storePasswordTemporarily (state, password) {
     state.passwordTemporaryStorage = password
+  },
+  setApartmentPrefs (state, prefs) {
+    state.apartmentPrefs = prefs
   }
 }

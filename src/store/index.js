@@ -11,7 +11,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
-    passwordTemporaryStorage: ''
+    passwordTemporaryStorage: '',
+    apartmentPrefs: {}
   },
   actions: {...accountActions},
   // actions,
