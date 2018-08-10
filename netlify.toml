@@ -6,13 +6,13 @@
 
 [[redirects]]
   # Redirect default Netlify subdomain to primary domain
-  from = https://nervous-golick-34c7f9.netlify.com/*
-  to = https://dev.pineapplepad.com/:splat
+  from = "https://nervous-golick-34c7f9.netlify.com/*"
+  to = "https://dev.pineapplepad.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = http://nervous-golick-34c7f9.netlify.com/*
-  to = http://dev.pineapplepad.com/:splat
+  from = "http://nervous-golick-34c7f9.netlify.com/*"
+  to = "http://dev.pineapplepad.com/:splat"
   status = 301
   force = true
