@@ -11,10 +11,10 @@
       </div>
       <div v-if="!!user" class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          {{user.username}}
+          Hey there, {{user.username}}
         </a>
         <div class="navbar-dropdown is-right is-boxed">
-          <router-link class="navbar-item" to="profile">
+          <router-link class="navbar-item" :to="{name: 'profile'}">
             Edit Account Settings
           </router-link>
           <a class="navbar-item" @click="$store.dispatch('signOut')">
