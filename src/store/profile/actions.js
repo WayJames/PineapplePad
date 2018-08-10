@@ -17,10 +17,24 @@ export default {
       throw err
     }
   },
-  async signIn ({ commit }, { username, password }) {
+  async signIn ({ commit, dispatch }, { username, password, redirect }) {
     try {
       let user = await Auth.signIn(username, password)
       commit('setUser', user)
+      try {
+        let prefs = await dispatch('getApartmentPrefs')
+        if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+          router.push({ name: 'force_password_change' })
+        } else if (prefs.length === 0) {
+          router.push({name: 'gather_user_data'})
+        } else if (redirect) {
+          router.push(redirect)
+        } else {
+          router.push({ name: 'profile' })
+        }
+      } catch (err) {
+        throw err
+      }
       return user
     } catch (err) {
       throw err
@@ -96,6 +110,19 @@ export default {
       let resp = await API.post('account_attributesCRUD', '/account_attributes', {body: attributes})
       router.push({name: 'profile'})
       return resp
+    } catch (err) {
+      throw err
+    }
+  },
+  async getApartmentPrefs ({commit}) {
+    try {
+      let resp = await API.get('account_attributesCRUD', '/account_attributes')
+      if (resp.length) {
+        commit('setApartmentPrefs', resp[0])
+      } else {
+        throw resp
+      }
+      return resp[0]
     } catch (err) {
       throw err
     }

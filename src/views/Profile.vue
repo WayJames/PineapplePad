@@ -45,7 +45,7 @@
               <p class="title">Apartment Info</p>
               <p class="subtitle">Where do you want to live?</p>
               <div class="content">
-                <!-- Content -->
+                <apartment-prefs-component/>
               </div>
             </article>
           </div>
@@ -55,10 +55,12 @@
   </div>
 </template>
 <script>
-import ChangePasswordComponent from '../components/profile/ChangePassword.vue'
+import ChangePasswordComponent from '@/components/profile/ChangePassword.vue'
+import ApartmentPrefsComponent from '@/components/profile/ApartmentPrefs.vue'
 export default {
   components: {
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ApartmentPrefsComponent
   },
   data () {
     return {
@@ -74,7 +76,6 @@ export default {
     }
   },
   methods: {
-
     submitChangePassword (data) {
       console.log(data)
       this.$store.dispatch('changePassword', { oldPass: data.oldPass, newPass: data.newPass })
