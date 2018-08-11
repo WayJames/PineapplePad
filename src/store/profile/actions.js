@@ -81,6 +81,19 @@ export default {
       throw err
     }
   },
+  async updateUserAttributes ({dispatch, state}, args) {
+    try {
+      await Auth.updateUserAttributes(state.user, args)
+      try {
+        let user = await dispatch('updateUser')
+        return user
+      } catch (err) {
+        throw err
+      }
+    } catch (err) {
+      throw err
+    }
+  },
   async submitVerificationCode ({dispatch, state}, {username, code}) {
     try {
       let resp = await Auth.confirmSignUp(username, code)
