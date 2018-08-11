@@ -82,6 +82,7 @@ export default {
       this.apartmentPrefs.move_in_date = luxonObj.toISODate()
       this.$store.dispatch('submitApartmentPrefs', this.apartmentPrefs).then(resp => {
         this.buttonLoading = false
+        this.$snackbar.open('Apartment data saved!')
       }).catch(err => {
         this.buttonLoading = false
         throw err
