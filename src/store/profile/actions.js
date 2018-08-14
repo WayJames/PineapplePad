@@ -83,13 +83,25 @@ export default {
   },
   async updateUserAttributes ({dispatch, state}, args) {
     try {
-      await Auth.updateUserAttributes(state.user, args)
+      Auth.updateUserAttributes(state.user, args)
+      // We will return which contacts are verified so we can check
+      // if the user needs to verify any contacts now due to attributes change
+      let resp = await Auth.verifiedContact(state.user)
       try {
-        let user = await dispatch('updateUser')
-        return user
+        // Make sure we have the latest version of the user on hand
+        await dispatch('updateUser')
+        return resp
       } catch (err) {
         throw err
       }
+    } catch (err) {
+      throw err
+    }
+  },
+  async verifyEmailAddress ({state}, {code}) {
+    try {
+      await Auth.verifyCurrentUserAttributeSubmit('email', code)
+      return await Auth.verifiedContact(state.user)
     } catch (err) {
       throw err
     }

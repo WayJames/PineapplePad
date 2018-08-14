@@ -77,7 +77,6 @@ export default {
           this.loading = false
         })
         .catch((err) => {
-          console.log(err)
           this.loading = false
           this.errorMessage = err.message
           this.errorMessageDisplay = true

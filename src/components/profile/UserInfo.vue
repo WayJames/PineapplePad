@@ -1,5 +1,7 @@
 <template lang="pug">
   div
+    b-modal(:active.sync="isVerifyEmailModalActive")
+      verify-email-modal
     p.title Your Info
     p.subtitle Personal data
     .content
@@ -12,13 +14,21 @@
           b-input(v-model='attributes.phone_number', type='text', required)
         b-field(label='Email')
           b-input(v-model='attributes.email', type='text', required)
-        button.button.is-warning(v-bind:class="{ 'is-loading': buttonLoading }", :disabled='!formValid')
-          span.icon
-            i.fas.fa-user
-          span Submit Changes
+        .level
+          .level-left
+            .level-item
+              button.button.is-warning(v-bind:class="{ 'is-loading': buttonLoading }", :disabled='!formValid')
+                span.icon
+                  i.fas.fa-user
+                span Submit Changes
+          .level-right
+            .level-item
+              a(@click="isVerifyEmailModalActive = true") Verify Email
 </template>
 
 <script>
+import VerifyEmailModal from './VerifyEmailModal.vue'
+
 export default {
   data () {
     return {
@@ -30,7 +40,8 @@ export default {
       buttonLoading: false,
       loading: false,
       displayError: false,
-      errorMessage: ''
+      errorMessage: '',
+      isVerifyEmailModalActive: false
     }
   },
   mounted () {
@@ -51,9 +62,21 @@ export default {
         this.attributes.phone_number = `+1${this.attributes.phone_number}`
       }
       this.buttonLoading = true
-      this.$store.dispatch('updateUserAttributes', this.attributes).then(() => {
+      this.$store.dispatch('updateUserAttributes', this.attributes).then((resp) => {
         this.buttonLoading = false
-        this.$snackbar.open('Personal data saved!')
+        if (resp.verified.email) {
+          this.$snackbar.open('Personal data saved!')
+        } else {
+          this.$snackbar.open({
+            message: 'Please verify your email address!',
+            actionText: 'Verify Email',
+            indefinite: true,
+            queue: false,
+            onAction: () => {
+              this.isVerifyEmailModalActive = true
+            }
+          })
+        }
       }).catch(err => {
         this.displayError = true
         this.errorMessage = err.message
@@ -61,6 +84,9 @@ export default {
         this.buttonLoading = false
       })
     }
+  },
+  components: {
+    VerifyEmailModal
   }
 }
 </script>
