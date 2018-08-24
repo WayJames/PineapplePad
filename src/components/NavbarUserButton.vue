@@ -10,9 +10,9 @@
         </a>
       </div>
       <div v-if="!!user" class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+        <router-link :to="{name: 'dashboard'}" class="navbar-link">
           Hey there, {{user.username}}
-        </a>
+        </router-link>
         <div class="navbar-dropdown is-right is-boxed">
           <router-link class="navbar-item" :to="{name: 'profile'}">
             Edit Account Settings

@@ -7,6 +7,7 @@ import Profile from './views/Profile.vue'
 import ForcePasswordChange from './views/ForcePasswordChange.vue'
 import ConfirmAccount from './views/ConfirmAccount.vue'
 import GatherApartmentPrefs from './views/GatherApartmentPrefs.vue'
+import Dashboard from './views/Dashboard.vue'
 import store from './store'
 
 import {Auth} from 'aws-amplify'
@@ -63,6 +64,12 @@ let router = new Router({
       path: '/register/collectdata',
       name: 'gather_user_data',
       component: GatherApartmentPrefs,
+      meta: {authLevel: AUTH_LEVEL_USER}
+    },
+    {
+      path: '/dash',
+      name: 'dashboard',
+      component: Dashboard,
       meta: {authLevel: AUTH_LEVEL_USER}
     }
   ]

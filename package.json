@@ -16,7 +16,9 @@
     "luxon": "^1.3.3",
     "pug": "^2.0.3",
     "vue": "^2.5.16",
+    "vue-cute-rate": "0.0.9",
     "vue-router": "^3.0.1",
+    "vue2-google-maps": "^0.10.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
