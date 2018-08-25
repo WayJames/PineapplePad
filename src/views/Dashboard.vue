@@ -9,7 +9,20 @@
       .column.is-6
         .tile.is-parent.is-vertical
           .tile.is-child.box
-            p test
+            //- GmapMap(
+            //-   :center="markers[0]"
+            //-   :zoom="7"
+            //-   map-type-id="terrain"
+            //-   style="width: 100%; height: 300px"
+            //- )
+              //- GmapMarker(
+              //-   :key="index"
+              //-   v-for="(m, index) in markers"
+              //-   :position="m.position"
+              //-   :clickable="true"
+              //-   :draggable="true"
+              //-   @click="center=m.position"
+              //- )
           .tile.is-child.box
             p test
       .column
@@ -23,9 +36,12 @@
 </template>
 <script>
 import apartment from '@/components/Apartment.vue'
+import {gmapApi} from 'vue2-google-maps'
+
 export default {
   data () {
     return {
+      markers: [ ],
       apartments: [
         {
           id: 'fsauhdfias',
@@ -41,7 +57,7 @@ export default {
           bestMatch: true
         },
         {
-          id: 'qwefafd',
+          id: 'jcfvhfkbukh',
           name: 'Rowan Grove',
           address: {
             line1: '2831 20th St',
@@ -54,6 +70,42 @@ export default {
           bestMatch: false
         }
       ]
+    }
+  },
+  computed: {
+    google: gmapApi
+  },
+  methods: {
+    async geocode (address) {
+      let geocoder = new this.google.maps.Geocoder()
+      geocoder.geocode({address: `${address.line1} ${address.zip}`}, (results, status) => {
+        if (status === 'OK') {
+          return results
+        } else {
+          throw status
+        }
+      })
+    }
+  },
+  // TODO: Remove testing code
+  created () {
+    for (var i = 0; i < this.apartments.length; i++) {
+      let address = this.apartments[i].address
+      this.geocode(address).then((res) => {
+        this.markers.push(res)
+        console.log(res)
+      })
+    }
+  },
+  watch: {
+    apartments: function (apartments) {
+      for (var i = 0; i < apartments.length; i++) {
+        let address = apartments[i].address
+        this.geocode(address).then((res) => {
+          this.markers.push(res)
+          console.log(res)
+        })
+      }
     }
   },
   components: {
