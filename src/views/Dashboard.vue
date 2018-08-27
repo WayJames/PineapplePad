@@ -9,20 +9,20 @@
       .column.is-6
         .tile.is-parent.is-vertical
           .tile.is-child.box
-            //- GmapMap(
-            //-   :center="markers[0]"
-            //-   :zoom="7"
-            //-   map-type-id="terrain"
-            //-   style="width: 100%; height: 300px"
-            //- )
-              //- GmapMarker(
-              //-   :key="index"
-              //-   v-for="(m, index) in markers"
-              //-   :position="m.position"
-              //-   :clickable="true"
-              //-   :draggable="true"
-              //-   @click="center=m.position"
-              //- )
+            GmapMap(
+              :center="center"
+              :zoom="12"
+              map-type-id="terrain"
+              style="width: 100%; height: 300px"
+            )
+              GmapMarker(
+                :key="index"
+                v-for="(m, index) in markers"
+                :position="m"
+                :clickable="true"
+                :draggable="true"
+                @click="center=m"
+              )
           .tile.is-child.box
             p test
       .column
@@ -42,6 +42,10 @@ export default {
   data () {
     return {
       markers: [ ],
+      center: {
+        lat: 35.227155,
+        lng: -80.840048
+      },
       apartments: [
         {
           id: 'fsauhdfias',
@@ -54,7 +58,11 @@ export default {
           },
           pictureUrl: 'https://media.equityapartments.com/images/c_crop,x_0,y_0,w_1920,h_1080/c_fill,w_1920,h_1080/q_80/4105-6/2201-wilson-apartments-building.jpg',
           rating: 3.5,
-          bestMatch: true
+          bestMatch: true,
+          latlng: {
+            lat: 35.227145,
+            lng: -80.840048
+          }
         },
         {
           id: 'jcfvhfkbukh',
@@ -67,7 +75,11 @@ export default {
           },
           pictureUrl: 'https://media.equityapartments.com/images/c_crop,x_0,y_0,w_1920,h_1080/c_fill,w_1920,h_1080/q_80/4105-6/2201-wilson-apartments-building.jpg',
           rating: 5,
-          bestMatch: false
+          bestMatch: false,
+          latlng: {
+            lat: 35.227145,
+            lng: -80.845158
+          }
         }
       ]
     }
@@ -75,36 +87,15 @@ export default {
   computed: {
     google: gmapApi
   },
-  methods: {
-    async geocode (address) {
-      let geocoder = new this.google.maps.Geocoder()
-      geocoder.geocode({address: `${address.line1} ${address.zip}`}, (results, status) => {
-        if (status === 'OK') {
-          return results
-        } else {
-          throw status
-        }
-      })
-    }
-  },
-  // TODO: Remove testing code
-  created () {
+  mounted () {
     for (var i = 0; i < this.apartments.length; i++) {
-      let address = this.apartments[i].address
-      this.geocode(address).then((res) => {
-        this.markers.push(res)
-        console.log(res)
-      })
+      this.markers.push(this.apartments[i].latlng)
     }
   },
   watch: {
     apartments: function (apartments) {
       for (var i = 0; i < apartments.length; i++) {
-        let address = apartments[i].address
-        this.geocode(address).then((res) => {
-          this.markers.push(res)
-          console.log(res)
-        })
+        this.markers.push(apartments[i].latlng)
       }
     }
   },

@@ -2,13 +2,15 @@
 div
   .level
     .level-left
-      h3.title.is-3 {{info.name}}
+      h3.title.is-3.level.item {{info.name}}
+        b-tooltip(label="This apartment is a best match based on your preferences!" multilined v-if="info.bestMatch")
+          b-icon(icon="heart" pack="fas").bullseye-icon
     .level-right
       star-rate(
         :value="info.rating"
         type="star1"
         :star-half="true"
-        disabled)
+        disabled).level-item
   .columns
     .column.is-half
       figure.image.is-4by3
@@ -34,3 +36,9 @@ export default {
   }
 }
 </script>
+<style>
+.bullseye-icon {
+  padding-left: 10px;
+  color: red;
+}
+</style>
