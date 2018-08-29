@@ -62,7 +62,8 @@ export default {
           latlng: {
             lat: 35.227145,
             lng: -80.840048
-          }
+          },
+          owner: 'WWU Living'
         },
         {
           id: 'jcfvhfkbukh',
@@ -79,7 +80,8 @@ export default {
           latlng: {
             lat: 35.227145,
             lng: -80.845158
-          }
+          },
+          owner: 'RowGro LLC'
         }
       ]
     }
