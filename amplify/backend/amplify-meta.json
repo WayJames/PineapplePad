@@ -1,0 +1,52 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "ineapplead-20180930124303-authRole",
+			"UnauthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20180930124303-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20180930124303-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "ineapplead-20180930124303-deployment",
+			"UnauthRoleName": "ineapplead-20180930124303-unauthRole",
+			"StackName": "ineapplead-20180930124303",
+			"StackId": "arn:aws:cloudformation:us-east-1:288739247229:stack/ineapplead-20180930124303/74306050-c4f1-11e8-ac9e-500abe22848d"
+		}
+	},
+	"auth": {
+		"pineapplepadlogin": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20180930124303-deployment/amplify-cfn-templates/auth/pineapplepadlogin-cloudformation-template.yml",
+				"logicalId": "authpineapplepadlogin"
+			},
+			"lastPushTimeStamp": "2018-09-30T21:24:43.315Z",
+			"output": {
+				"AppClientSecret": "lc4b7tjgsp7b5ucl90759a55bodj0j1m1blnau44vgrdm1rf3j2",
+				"UserPoolId": "us-east-1_9mlIoPTfj",
+				"AppClientIDWeb": "5ht3a96h0f35qbbu1h6th3npm9",
+				"AppClientID": "51btb9ctkv22rtk0kds5k5b5hn",
+				"UserPoolName": "pineapplepad",
+				"IdentityPoolId": "us-east-1:2e7688b7-d33f-4618-8620-26ce3f84310c",
+				"IdentityPoolName": "pineapplepadlogin_identitypool_1bb5e040"
+			},
+			"lastPushDirHash": "qPqNByDS8a37CF0friI+raz4+rs="
+		}
+	},
+	"api": {
+		"accountattributes": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20180930124303-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
+				"logicalId": "apiaccountattributes"
+			},
+			"lastPushTimeStamp": "2018-09-30T21:24:43.336Z",
+			"output": {
+				"ApiName": "accountattributes",
+				"RootUrl": "https://98qc584ed6.execute-api.us-east-1.amazonaws.com/Prod"
+			},
+			"lastPushDirHash": "LuM5DoItD8lav9w+B22j1sX8ls4="
+		}
+	}
+}

@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "ineapplead-20180930124303-authRole",
+            "UnauthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20180930124303-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20180930124303-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "ineapplead-20180930124303-deployment",
+            "UnauthRoleName": "ineapplead-20180930124303-unauthRole",
+            "StackName": "ineapplead-20180930124303",
+            "StackId": "arn:aws:cloudformation:us-east-1:288739247229:stack/ineapplead-20180930124303/74306050-c4f1-11e8-ac9e-500abe22848d"
+        }
+    }
+}

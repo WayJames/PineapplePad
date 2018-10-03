@@ -1,0 +1,20 @@
+{
+    "projectName": "PineapplePad",
+    "projectPath": "/mnt/c/Users/danie/Documents/GitHub/PineapplePad Project/PineapplePad",
+    "defaultEditor": "code",
+    "frontendHandler": {
+        "javascript": "/mnt/c/Users/danie/AppData/Roaming/npm/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-javascript"
+    },
+    "javascript": {
+        "framework": "vue",
+        "config": {
+            "SourceDir": "src",
+            "DistributionDir": "dist",
+            "BuildCommand": "npm run-script build",
+            "StartCommand": "npm run-script serve"
+        }
+    },
+    "providers": {
+        "awscloudformation": "/mnt/c/Users/danie/AppData/Roaming/npm/node_modules/@aws-amplify/cli/node_modules/amplify-provider-awscloudformation"
+    }
+}

@@ -122,6 +122,7 @@ export default {
       }
       return resp
     } catch (err) {
+      console.log(err)
       switch (err.code) {
         case 'UserNotFoundException':
           err.message = 'User not found.'
@@ -132,7 +133,7 @@ export default {
   },
   async submitApartmentPrefs (context, attributes) {
     try {
-      let resp = await API.post('account_attributesCRUD', '/account_attributes', {body: attributes})
+      let resp = await API.post('accountattributes', '/items', {body: attributes})
       router.push({name: 'profile'})
       return resp
     } catch (err) {
@@ -141,7 +142,7 @@ export default {
   },
   async getApartmentPrefs ({commit}) {
     try {
-      let resp = await API.get('account_attributesCRUD', '/account_attributes')
+      let resp = await API.get('accountattributes', '/items')
       if (resp.length) {
         commit('setApartmentPrefs', resp[0])
       } else {

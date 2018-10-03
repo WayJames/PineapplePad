@@ -80,6 +80,7 @@ export default {
           this.loading = false
           this.errorMessage = err.message
           this.errorMessageDisplay = true
+          console.log(err)
         })
     }
 
