@@ -78,61 +78,81 @@
 				}
 			}
 		},
-		"authpineapplepadlogin": {
+		"functionaccountattributesDynamo": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20180930124303-deployment/amplify-cfn-templates/auth/pineapplepadlogin-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesDynamo-cloudformation-template.json",
+				"Parameters": {}
+			}
+		},
+		"authpineapplepad": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "pineapplepadlogin_identitypool_1bb5e040",
-					"allowUnauthenticatedIdentities": false,
+					"identityPoolName": "pineapplepad",
+					"allowUnauthenticatedIdentities": true,
 					"thirdPartyAuth": false,
-					"lambdaLogPolicy": "pineapplepadlogin_lambda_log_policy",
-					"openIdLambdaRoleName": "pineapplepadlogin_openid_lambda_role",
-					"openIdRolePolicy": "pineapplepadlogin_openid_pass_role_policy",
-					"openIdLambdaIAMPolicy": "pineapplepadlogin_openid_lambda_iam_policy",
-					"openIdLogPolicy": "pineapplepadlogin_openid_lambda_log_policy",
+					"lambdaLogPolicy": "pineapplepad_lambda_log_policy",
+					"openIdLambdaRoleName": "pineapplepad_openid_lambda_role",
+					"openIdRolePolicy": "pineapplepad_openid_pass_role_policy",
+					"openIdLambdaIAMPolicy": "pineapplepad_openid_lambda_iam_policy",
+					"openIdLogPolicy": "pineapplepad_openid_lambda_log_policy",
 					"userPoolName": "pineapplepad",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
-					"roleName": "pineapplepadlogin_sns-role",
-					"roleExternalId": "pineapplepadlogin_role_external_id",
-					"policyName": "pineapplepadlogin-sns-policy",
+					"roleName": "pineapplepad_sns-role",
+					"roleExternalId": "pineapplepad_role_external_id",
+					"policyName": "pineapplepad-sns-policy",
 					"smsAuthenticationMessage": "Your authentication code is {####}",
 					"smsVerificationMessage": "Your verification code is {####}",
-					"emailVerificationSubject": "Your verification code",
-					"emailVerificationMessage": "Your verification code is {####}",
+					"emailVerificationSubject": "PineapplePad Verification Code",
+					"emailVerificationMessage": "Your PineapplePad verification code is {####}",
 					"defaultPasswordPolicy": false,
 					"passwordPolicyMinLength": 8,
 					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
 					"requiredAttributes": "name,phone_number,email",
-					"userpoolClientName": "pineapplepadlogin_app_client",
+					"userpoolClientName": "pineapplepad_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
 					"userpoolClientReadAttributes": "email",
-					"mfaLambdaRole": "pineapplepadlogin_totp_lambda_role",
-					"mfaLambdaLogPolicy": "pineapplepadlogin_totp_lambda_log_policy",
-					"mfaPassRolePolicy": "pineapplepadlogin_totp_pass_role_policy",
-					"mfaLambdaIAMPolicy": "pineapplepadlogin_totp_lambda_iam_policy",
-					"userpoolClientLambdaRole": "pineapplepadlogin_userpoolclient_lambda_role",
-					"userpoolClientLogPolicy": "pineapplepadlogin_userpoolclient_lambda_log_policy",
-					"userpoolClientLambdaPolicy": "pineapplepadlogin_userpoolclient_lambda_iam_policy",
+					"mfaLambdaRole": "pineapplepad_totp_lambda_role",
+					"mfaLambdaLogPolicy": "pineapplepad_totp_lambda_log_policy",
+					"mfaPassRolePolicy": "pineapplepad_totp_pass_role_policy",
+					"mfaLambdaIAMPolicy": "pineapplepad_totp_lambda_iam_policy",
+					"userpoolClientLambdaRole": "pineapplepad_userpoolclient_lambda_role",
+					"userpoolClientLogPolicy": "pineapplepad_userpoolclient_lambda_log_policy",
+					"userpoolClientLambdaPolicy": "pineapplepad_userpoolclient_lambda_iam_policy",
 					"userpoolClientSetAttributes": false,
 					"useDefault": "manual",
 					"authSelections": "identityPoolAndUserPool",
-					"resourceName": "pineapplepadlogin",
-					"unAuthRoleName": "ineapplead-20180930124303-unauthRole",
-					"authRoleName": "ineapplead-20180930124303-authRole",
-					"unAuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20180930124303-unauthRole",
-					"authRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20180930124303-authRole"
+					"resourceName": "pineapplepad",
+					"unAuthRoleName": "ineapplead-20181103123447-unauthRole",
+					"authRoleName": "ineapplead-20181103123447-authRole",
+					"unAuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-unauthRole",
+					"authRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-authRole"
 				}
 			}
 		},
 		"apiaccountattributes": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20180930124303-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
-				"Parameters": {}
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
+				"Parameters": {
+					"functionaccountattributesDynamoName": {
+						"Fn::GetAtt": [
+							"functionaccountattributesDynamo",
+							"Outputs.Name"
+						]
+					},
+					"functionaccountattributesDynamoArn": {
+						"Fn::GetAtt": [
+							"functionaccountattributesDynamo",
+							"Outputs.Arn"
+						]
+					}
+				}
 			}
 		}
 	},

@@ -2,8 +2,7 @@
     "paths": [
         {
             "name": "/items",
-            "lambdaArn": "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRU-accountattributes-mobilehub-1705399922",
-            "lambdaFunction": "accountattributesCRU-accountattributes-mobilehub-1705399922",
+            "lambdaFunction": "accountattributesDynamo",
             "privacy": {
                 "private": true,
                 "auth": "rw"
@@ -11,18 +10,26 @@
         }
     ],
     "resourceName": "accountattributes",
-    "apiName": "pineapplepad4f309f03",
+    "apiName": "pineapplepadc2d47b37",
     "functionArns": [
         {
-            "lambdaFunction": "accountattributesCRU-accountattributes-mobilehub-1705399922",
-            "lambdaArn": "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRU-accountattributes-mobilehub-1705399922"
+            "lambdaFunction": "accountattributesDynamo"
         }
     ],
     "privacy": {
         "auth": 1,
         "unauth": 0,
-        "authRoleName": "ineapplead-20180930124303-authRole",
-        "unAuthRoleName": "ineapplead-20180930124303-unauthRole"
+        "authRoleName": "ineapplead-20181103123447-authRole",
+        "unAuthRoleName": "ineapplead-20181103123447-unauthRole"
     },
-    "dependsOn": []
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "accountattributesDynamo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
 }

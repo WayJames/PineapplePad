@@ -6,20 +6,34 @@
     "Parameters": {
         
     
+    
+          "functionaccountattributesDynamoName": {
+            "Type": "String",
+            "Default": "functionaccountattributesDynamoName"
+          },
+        
+          
+          "functionaccountattributesDynamoArn": {
+            "Type": "String",
+            "Default": "functionaccountattributesDynamoArn"
+          }
+        
+          
+          
         },
     
     "Resources": {
         
         
-        "PolicyAPIGWpineapplepad4f309f03auth": {
+        "PolicyAPIGWpineapplepadc2d47b37auth": {
             "DependsOn": [
-              "pineapplepad4f309f03"
+              "pineapplepadc2d47b37"
             ],
             "Type": "AWS::IAM::Policy",
             "Properties": {
-              "PolicyName": "PolicyAPIGWpineapplepad4f309f03auth",
+              "PolicyName": "PolicyAPIGWpineapplepadc2d47b37auth",
               "Roles": [
-                "ineapplead-20180930124303-authRole"
+                "ineapplead-20181103123447-authRole"
               ],
               "PolicyDocument": {
                 "Version": "2012-10-17",
@@ -47,7 +61,7 @@
                             },
                             ":",
                             {
-                              "Ref": "pineapplepad4f309f03"
+                              "Ref": "pineapplepadc2d47b37"
                             },
                             "/Prod/*",
                             "/items/*"
@@ -68,7 +82,7 @@
                             },
                             ":",
                             {
-                              "Ref": "pineapplepad4f309f03"
+                              "Ref": "pineapplepadc2d47b37"
                             },
                             "/Prod/*",
                             "/items"
@@ -89,16 +103,16 @@
           },
         
         
-      "pineapplepad4f309f03": {
+      "pineapplepadc2d47b37": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "pineapplepad4f309f03",
+          "Name": "pineapplepadc2d47b37",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "pineapplepad4f309f03"
+              "title": "pineapplepadc2d47b37"
             },
             "host": {
                 "Fn::Join": [
@@ -207,8 +221,11 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                             
-                            "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRU-accountattributes-mobilehub-1705399922", 
+                            
+                            {
+                                
+                                "Ref": "functionaccountattributesDynamoArn"
+                            },
                             
                             "/invocations"
                           ]
@@ -309,8 +326,11 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                           
-                            "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRU-accountattributes-mobilehub-1705399922",
+                          
+                          {
+                            
+                            "Ref": "functionaccountattributesDynamoArn"
+                          },
                           
                           "/invocations"
                         ]
@@ -366,10 +386,14 @@
                   
         
         
-        "functionaccountattributesCRUaccountattributesmobilehub1705399922Permissionpineapplepad4f309f03": {
+        "functionaccountattributesDynamoPermissionpineapplepadc2d47b37": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName":  "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRU-accountattributes-mobilehub-1705399922", 
+                "FunctionName": 
+                    {
+                        "Ref":  "functionaccountattributesDynamoName"
+                    },
+                    
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -386,7 +410,7 @@
                             },
                             ":",
                             {
-                                "Ref": "pineapplepad4f309f03"
+                                "Ref": "pineapplepadc2d47b37"
                             },
                             "/*/*/*"
                         ]
@@ -399,13 +423,13 @@
         
         
         
-      "DeploymentAPIGWpineapplepad4f309f03": {
+      "DeploymentAPIGWpineapplepadc2d47b37": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
           "StageName": "Prod",
           "RestApiId": {
-            "Ref": "pineapplepad4f309f03"
+            "Ref": "pineapplepadc2d47b37"
           }
         }
       }
@@ -413,7 +437,7 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "pineapplepad4f309f03"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/Prod"]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "pineapplepadc2d47b37"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/Prod"]]}
         },
         "ApiName": {
           "Description": "API Friendly name",

@@ -21,11 +21,12 @@ export default {
     try {
       let user = await Auth.signIn(username, password)
       commit('setUser', user)
+      if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+        router.push({ name: 'force_password_change' })
+      }
       try {
         let prefs = await dispatch('getApartmentPrefs')
-        if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-          router.push({ name: 'force_password_change' })
-        } else if (prefs.length === 0) {
+        if (prefs.length === 0) {
           router.push({name: 'gather_user_data'})
         } else if (redirect) {
           router.push(redirect)
@@ -33,6 +34,8 @@ export default {
           router.push({ name: 'profile' })
         }
       } catch (err) {
+        console.log('Error getting apartment prefs')
+        console.log(err)
         throw err
       }
       return user
@@ -116,12 +119,15 @@ export default {
           await dispatch('signIn', {username, password: state.passwordTemporaryStorage})
           router.push({name: 'gather_user_data'})
         } catch (err) {
+          console.log('error 1')
+          console.log(err)
           err.message = 'An unexpcted error occurred. Please contact us.'
           throw err
         }
       }
       return resp
     } catch (err) {
+      console.log('error 2')
       console.log(err)
       switch (err.code) {
         case 'UserNotFoundException':
@@ -133,7 +139,10 @@ export default {
   },
   async submitApartmentPrefs (context, attributes) {
     try {
-      let resp = await API.post('accountattributes', '/items', {body: attributes})
+      // let user = await Auth.currentUserPoolUser()
+      // console.log(user)
+      // attributes.userId = user.username
+      let resp = await API.put('accountattributes', '/items', {body: attributes})
       router.push({name: 'profile'})
       return resp
     } catch (err) {
@@ -141,14 +150,18 @@ export default {
     }
   },
   async getApartmentPrefs ({commit}) {
+    let user = await Auth.currentUserPoolUser()
+    console.log(user.username)
+    let myInit = { headers: {}, response: true, queryStringParameters: {} }
     try {
-      let resp = await API.get('accountattributes', '/items')
-      if (resp.length) {
-        commit('setApartmentPrefs', resp[0])
+      let resp = await API.get('accountattributes', '/items/userId', myInit)
+      console.log(resp.data)
+      if (resp.data.length) {
+        commit('setApartmentPrefs', resp.data[0])
       } else {
-        throw resp
+        return resp.data
       }
-      return resp[0]
+      return resp.data[0]
     } catch (err) {
       throw err
     }

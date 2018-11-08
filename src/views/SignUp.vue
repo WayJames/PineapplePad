@@ -18,21 +18,17 @@
                 {{errorMessage}}
               </b-notification>
             <form @submit.prevent="submit()" class="columns is-multiline">
-              <div class="column is-4">
-                <label class="label ">Username</label>
-                <b-input type="username" v-model="username" required />
+              <div class="column is-half">
+                <label class="label ">Email Address</label>
+                <b-input type="email" v-model="username" required />
               </div>
-              <div class="column is-4">
+              <div class="column is-half">
                 <label class="label ">Password</label>
                 <b-input password-reveal type="password" v-model="password" required />
               </div>
-              <div class="column is-4">
+              <div class="column is-half">
                 <label class="label ">First and Last name</label>
                 <b-input type="text" v-model="attributes.name" required />
-              </div>
-              <div class="column is-half">
-                <label class="label ">Email Address</label>
-                <b-input type="email" v-model="attributes.email" required />
               </div>
               <div class="column is-half">
                 <label class="label ">Phone Number</label>
@@ -80,6 +76,7 @@ export default {
           this.loading = false
           this.errorMessage = err.message
           this.errorMessageDisplay = true
+          console.log('THIS IS ERROR')
           console.log(err)
         })
     }
