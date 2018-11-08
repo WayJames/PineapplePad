@@ -36,12 +36,12 @@
 </template>
 <script>
 import apartment from '@/components/Apartment.vue'
-import {gmapApi} from 'vue2-google-maps'
+import { gmapApi } from 'vue2-google-maps'
 
 export default {
   data () {
     return {
-      markers: [ ],
+      markers: [],
       center: {
         lat: 35.227155,
         lng: -80.840048

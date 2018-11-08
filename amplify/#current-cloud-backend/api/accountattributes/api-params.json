@@ -2,7 +2,7 @@
     "paths": [
         {
             "name": "/items",
-            "lambdaFunction": "accountattributesDynamo",
+            "lambdaFunction": "accountattributesCRUD",
             "privacy": {
                 "private": true,
                 "auth": "rw"
@@ -10,10 +10,10 @@
         }
     ],
     "resourceName": "accountattributes",
-    "apiName": "pineapplepadc2d47b37",
+    "apiName": "pineapplepad682db536",
     "functionArns": [
         {
-            "lambdaFunction": "accountattributesDynamo"
+            "lambdaFunction": "accountattributesCRUD"
         }
     ],
     "privacy": {
@@ -25,7 +25,7 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "accountattributesDynamo",
+            "resourceName": "accountattributesCRUD",
             "attributes": [
                 "Name",
                 "Arn"

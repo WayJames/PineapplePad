@@ -7,15 +7,15 @@
         
     
     
-          "functionaccountattributesDynamoName": {
+          "functionaccountattributesCRUDName": {
             "Type": "String",
-            "Default": "functionaccountattributesDynamoName"
+            "Default": "functionaccountattributesCRUDName"
           },
         
           
-          "functionaccountattributesDynamoArn": {
+          "functionaccountattributesCRUDArn": {
             "Type": "String",
-            "Default": "functionaccountattributesDynamoArn"
+            "Default": "functionaccountattributesCRUDArn"
           }
         
           
@@ -25,13 +25,13 @@
     "Resources": {
         
         
-        "PolicyAPIGWpineapplepadc2d47b37auth": {
+        "PolicyAPIGWpineapplepad682db536auth": {
             "DependsOn": [
-              "pineapplepadc2d47b37"
+              "pineapplepad682db536"
             ],
             "Type": "AWS::IAM::Policy",
             "Properties": {
-              "PolicyName": "PolicyAPIGWpineapplepadc2d47b37auth",
+              "PolicyName": "PolicyAPIGWpineapplepad682db536auth",
               "Roles": [
                 "ineapplead-20181103123447-authRole"
               ],
@@ -61,7 +61,7 @@
                             },
                             ":",
                             {
-                              "Ref": "pineapplepadc2d47b37"
+                              "Ref": "pineapplepad682db536"
                             },
                             "/Prod/*",
                             "/items/*"
@@ -82,7 +82,7 @@
                             },
                             ":",
                             {
-                              "Ref": "pineapplepadc2d47b37"
+                              "Ref": "pineapplepad682db536"
                             },
                             "/Prod/*",
                             "/items"
@@ -103,16 +103,16 @@
           },
         
         
-      "pineapplepadc2d47b37": {
+      "pineapplepad682db536": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "pineapplepadc2d47b37",
+          "Name": "pineapplepad682db536",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "pineapplepadc2d47b37"
+              "title": "pineapplepad682db536"
             },
             "host": {
                 "Fn::Join": [
@@ -224,7 +224,7 @@
                             
                             {
                                 
-                                "Ref": "functionaccountattributesDynamoArn"
+                                "Ref": "functionaccountattributesCRUDArn"
                             },
                             
                             "/invocations"
@@ -329,7 +329,7 @@
                           
                           {
                             
-                            "Ref": "functionaccountattributesDynamoArn"
+                            "Ref": "functionaccountattributesCRUDArn"
                           },
                           
                           "/invocations"
@@ -386,12 +386,12 @@
                   
         
         
-        "functionaccountattributesDynamoPermissionpineapplepadc2d47b37": {
+        "functionaccountattributesCRUDPermissionpineapplepad682db536": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionaccountattributesDynamoName"
+                        "Ref":  "functionaccountattributesCRUDName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -410,7 +410,7 @@
                             },
                             ":",
                             {
-                                "Ref": "pineapplepadc2d47b37"
+                                "Ref": "pineapplepad682db536"
                             },
                             "/*/*/*"
                         ]
@@ -423,13 +423,13 @@
         
         
         
-      "DeploymentAPIGWpineapplepadc2d47b37": {
+      "DeploymentAPIGWpineapplepad682db536": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
           "StageName": "Prod",
           "RestApiId": {
-            "Ref": "pineapplepadc2d47b37"
+            "Ref": "pineapplepad682db536"
           }
         }
       }
@@ -437,7 +437,7 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "pineapplepadc2d47b37"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/Prod"]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "pineapplepad682db536"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/Prod"]]}
         },
         "ApiName": {
           "Description": "API Friendly name",

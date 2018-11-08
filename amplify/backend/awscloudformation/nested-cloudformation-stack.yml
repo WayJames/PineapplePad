@@ -78,10 +78,10 @@
 				}
 			}
 		},
-		"functionaccountattributesDynamo": {
+		"functionaccountattributesCRUD": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesDynamo-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesCRUD-cloudformation-template.json",
 				"Parameters": {}
 			}
 		},
@@ -140,15 +140,15 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
 				"Parameters": {
-					"functionaccountattributesDynamoName": {
+					"functionaccountattributesCRUDName": {
 						"Fn::GetAtt": [
-							"functionaccountattributesDynamo",
+							"functionaccountattributesCRUD",
 							"Outputs.Name"
 						]
 					},
-					"functionaccountattributesDynamoArn": {
+					"functionaccountattributesCRUDArn": {
 						"Fn::GetAtt": [
-							"functionaccountattributesDynamo",
+							"functionaccountattributesCRUD",
 							"Outputs.Arn"
 						]
 					}
