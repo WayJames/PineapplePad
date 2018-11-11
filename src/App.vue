@@ -5,13 +5,18 @@
         <router-link class="navbar-item" to="/">
           <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
         </router-link>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <a
+          role="button"
+          :class="{'is-active': mobileMenuOpen}"
+          class="navbar-burger"
+          aria-label="menu" aria-expanded="false"
+          @click="mobileMenuOpen = !mobileMenuOpen">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-menu">
+      <div class="navbar-menu" :class="{'is-active': mobileMenuOpen}">
         <div class="navbar-start">
           <router-link to="/" class="navbar-item">How it works</router-link>
           <router-link to="/" class="navbar-item">What they say</router-link>
@@ -51,7 +56,8 @@ export default {
   },
   data () {
     return {
-      isLoginModalOpen: false
+      isLoginModalOpen: false,
+      mobileMenuOpen: false
     }
   },
   computed: {
