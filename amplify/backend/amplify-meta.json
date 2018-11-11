@@ -24,7 +24,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesCRUD-cloudformation-template.json",
 				"logicalId": "functionaccountattributesCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-08T06:55:01.346Z",
+			"lastPushTimeStamp": "2018-11-11T00:55:11.884Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRUD",
@@ -41,17 +41,17 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"logicalId": "authpineapplepad"
 			},
-			"lastPushTimeStamp": "2018-11-08T06:55:01.331Z",
+			"lastPushTimeStamp": "2018-11-11T00:55:11.936Z",
 			"output": {
-				"AppClientSecret": "1dbedjeo1uedcm08tgta7dq83oufujj38imecfh1lttm5pc1juov",
-				"UserPoolId": "us-east-1_1r0DOPjPA",
-				"AppClientIDWeb": "405uig14oinko9c49ft8b39qi9",
-				"AppClientID": "5ck8vlrd476lr19mdrd9hga0ed",
-				"IdentityPoolId": "us-east-1:6d002d12-fdf5-4443-951e-6b47c8a3592f",
+				"AppClientSecret": "jljsnf0o361ah7fa9t84lt9j7mckbnh69lcvf0ibs6rb6b9crlg",
+				"UserPoolId": "us-east-1_gcSJMKHzj",
+				"AppClientIDWeb": "461niai4idt4k8krvl3pg0fkne",
+				"AppClientID": "3tbtdj476hk359aphthb2ltu4",
+				"IdentityPoolId": "us-east-1:9bdd2553-3ce8-4e7a-a4de-c925a76c430d",
 				"IdentityPoolName": "pineapplepad",
 				"UserPoolName": "pineapplepad"
 			},
-			"lastPushDirHash": "BJ3qEbqhdOV+AQJBFVChORIR6kU="
+			"lastPushDirHash": "PB4ESTwm9NEYSwuCjEcVdTGx+Qo="
 		}
 	},
 	"api": {
@@ -72,7 +72,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
 				"logicalId": "apiaccountattributes"
 			},
-			"lastPushTimeStamp": "2018-11-08T06:55:01.339Z",
+			"lastPushTimeStamp": "2018-11-11T00:55:11.921Z",
 			"output": {
 				"ApiName": "accountattributes",
 				"RootUrl": "https://wg9aumihxh.execute-api.us-east-1.amazonaws.com/Prod"

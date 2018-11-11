@@ -67,7 +67,12 @@ export default {
     this.loading = true
     this.$store.dispatch('getApartmentPrefs').then((resp) => {
       this.loading = false
-      let date = DateTime.fromISO(this.$store.state.apartmentPrefs.move_in_date).toJSDate()
+      let date
+      if (this.$store.state.apartmentPrefs.move_in_date) {
+        date = DateTime.fromISO(this.$store.state.apartmentPrefs.move_in_date).toJSDate()
+      } else {
+        date = new Date()
+      }
       this.move_in_date_object = date
       this.apartmentPrefs = this.$store.state.apartmentPrefs
     })

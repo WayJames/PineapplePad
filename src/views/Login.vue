@@ -18,8 +18,8 @@
                 <b-notification type="is-danger" :active.sync="displayErrorMessage">
                   {{errorMessage}}
                 </b-notification>
-                <b-field label="Username">
-                  <b-input type="username" v-model="username" placeholder="Your Username" required>
+                <b-field label="Email">
+                  <b-input type="email" v-model="username" placeholder="Your Email" required>
                   </b-input>
                 </b-field>
                 <b-field v-if="pwResetMode" label="Reset Code">

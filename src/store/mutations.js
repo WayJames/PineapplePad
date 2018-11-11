@@ -10,5 +10,8 @@ export default {
   },
   setApartmentPrefs (state, prefs) {
     state.apartmentPrefs = prefs
+  },
+  setDisplayApartmentPrefsWarning (state, warningDisplayed) {
+    state.displayApartmentPrefsWarning = warningDisplayed
   }
 }

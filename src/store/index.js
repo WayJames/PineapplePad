@@ -12,7 +12,8 @@ export default new Vuex.Store({
   state: {
     user: null,
     passwordTemporaryStorage: '',
-    apartmentPrefs: {}
+    apartmentPrefs: {},
+    displayApartmentPrefsWarning: false
   },
   actions: {...accountActions},
   // actions,

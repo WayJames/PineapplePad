@@ -20,6 +20,18 @@
         <navbar-user-button @loginClicked="$router.push({name: 'login'})" />
       </div>
     </nav>
+    <nav v-if="displayApartmentPrefsWarning" class="navbar is-danger is-fixed-bottom" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <div class="navbar-item">It looks like never got your apartment preferences! Help us help you by telling us what you're looking for.</div>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <router-link :to="{name: 'gather_user_data'}" class="button is-warning">Go to the form now!</router-link>
+          </div>
+        </div>
+      </div>
+    </nav>
     <b-modal :active.sync="isLoginModalOpen" has-modal-card>
       <modal-login-form></modal-login-form>
     </b-modal>
@@ -28,8 +40,9 @@
 </template>
 
 <script>
-import ModalLoginForm from './components/ModalLoginForm.vue'
-import NavbarUserButton from './components/NavbarUserButton.vue'
+import ModalLoginForm from '@/components/ModalLoginForm.vue'
+import NavbarUserButton from '@/components/NavbarUserButton.vue'
+import store from '@/store'
 
 export default {
   components: {
@@ -39,6 +52,15 @@ export default {
   data () {
     return {
       isLoginModalOpen: false
+    }
+  },
+  computed: {
+    displayApartmentPrefsWarning () {
+      if (this.$route.name !== 'gather_user_data') {
+        return store.state.displayApartmentPrefsWarning
+      } else {
+        return false
+      }
     }
   }
 }

@@ -4,12 +4,17 @@ import router from '@/router'
 export default {
   async signOut ({ commit }) {
     await Auth.signOut()
+    commit('setDisplayApartmentPrefsWarning', false)
     router.push('/')
     commit('setUser', null)
   },
-  async updateUser ({ commit }) {
+  async updateUser ({ commit, dispatch }) {
     try {
       let user = await Auth.currentAuthenticatedUser()
+      let prefs = await dispatch('getApartmentPrefs')
+      if (prefs.length === 0) {
+        commit('setDisplayApartmentPrefsWarning', true)
+      }
       commit('setUser', user)
       return user
     } catch (err) {
@@ -20,23 +25,13 @@ export default {
   async signIn ({ commit, dispatch }, { username, password, redirect }) {
     try {
       let user = await Auth.signIn(username, password)
-      commit('setUser', user)
+      dispatch('updateUser')
       if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
         router.push({ name: 'force_password_change' })
-      }
-      try {
-        let prefs = await dispatch('getApartmentPrefs')
-        if (prefs.length === 0) {
-          router.push({name: 'gather_user_data'})
-        } else if (redirect) {
-          router.push(redirect)
-        } else {
-          router.push({ name: 'profile' })
-        }
-      } catch (err) {
-        console.log('Error getting apartment prefs')
-        console.log(err)
-        throw err
+      } else if (redirect) {
+        router.push(redirect)
+      } else {
+        router.push({ name: 'profile' })
       }
       return user
     } catch (err) {
@@ -109,6 +104,13 @@ export default {
       throw err
     }
   },
+  async resendVerificationCode ({state}, {username}) {
+    try {
+      return await Auth.resendSignUp(username)
+    } catch (err) {
+      throw err
+    }
+  },
   async submitVerificationCode ({dispatch, state}, {username, code}) {
     try {
       let resp = await Auth.confirmSignUp(username, code)
@@ -119,16 +121,12 @@ export default {
           await dispatch('signIn', {username, password: state.passwordTemporaryStorage})
           router.push({name: 'gather_user_data'})
         } catch (err) {
-          console.log('error 1')
-          console.log(err)
           err.message = 'An unexpcted error occurred. Please contact us.'
           throw err
         }
       }
       return resp
     } catch (err) {
-      console.log('error 2')
-      console.log(err)
       switch (err.code) {
         case 'UserNotFoundException':
           err.message = 'User not found.'
@@ -137,25 +135,23 @@ export default {
       throw err
     }
   },
-  async submitApartmentPrefs (context, attributes) {
+  async submitApartmentPrefs ({commit}, attributes) {
     try {
       // let user = await Auth.currentUserPoolUser()
       // console.log(user)
       // attributes.userId = user.username
       let resp = await API.put('accountattributes', '/items', {body: attributes})
       router.push({name: 'profile'})
+      commit('setDisplayApartmentPrefsWarning', false)
       return resp
     } catch (err) {
       throw err
     }
   },
   async getApartmentPrefs ({commit}) {
-    let user = await Auth.currentUserPoolUser()
-    console.log(user.username)
     let myInit = { headers: {}, response: true, queryStringParameters: {} }
     try {
       let resp = await API.get('accountattributes', '/items/userId', myInit)
-      console.log(resp.data)
       if (resp.data.length) {
         commit('setApartmentPrefs', resp.data[0])
       } else {

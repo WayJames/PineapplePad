@@ -17,6 +17,7 @@
                 </b-input>
               </b-field>
               <button v-bind:class="{ 'is-loading': loading }" class="button is-primary">Submit</button>
+              <a @click="resend()" v-bind:class="{ 'is-loading': loading }" class="button is-primary">Resend Verification</a>
             </div>
           </form>
         </article>
@@ -46,6 +47,20 @@ export default {
         this.$snackbar.open('Account verified successfully!')
       }).catch(err => {
         this.loading = false
+        this.errorMessage = err.message
+        this.displayErrorMessage = true
+      })
+    },
+    resend () {
+      this.loading = true
+      this.$store.dispatch('resendVerificationCode', {
+        username: 'daniel.heppner1@gmail.com'
+      }).then((resp) => {
+        this.loading = false
+        this.$snackbar.open('Resent verification code.')
+      }).catch(err => {
+        this.loading = false
+        console.log(err)
         this.errorMessage = err.message
         this.displayErrorMessage = true
       })
