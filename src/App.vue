@@ -22,7 +22,9 @@
           <router-link to="/" class="navbar-item">What they say</router-link>
           <router-link to="/" class="navbar-item">Apartment ratings</router-link>
         </div>
-        <navbar-user-button @loginClicked="$router.push({name: 'login'})" />
+        <div class="navbar-end">
+          <navbar-user-button @loginClicked="$router.push({name: 'login'})" />
+        </div>
       </div>
     </nav>
     <nav v-if="displayApartmentPrefsWarning" class="navbar is-danger is-fixed-bottom" role="navigation" aria-label="main navigation">
