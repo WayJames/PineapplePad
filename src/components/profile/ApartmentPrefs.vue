@@ -18,7 +18,7 @@
         </b-datepicker>
       </div>
       <div class="column is-6">
-        <label class="label ">Max Rent</label>
+        <label class="label ">Max Rent</label> <!-- TODO: make turn red when not number -->
         <b-input type="number" v-model="apartmentPrefs.max_rent" required />
       </div>
       <div class="column is-6">
