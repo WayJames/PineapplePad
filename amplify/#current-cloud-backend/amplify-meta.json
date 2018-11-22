@@ -24,7 +24,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesCRUD-cloudformation-template.json",
 				"logicalId": "functionaccountattributesCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-11T00:55:11.884Z",
+			"lastPushTimeStamp": "2018-11-15T03:52:08.226Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRUD",
@@ -41,7 +41,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"logicalId": "authpineapplepad"
 			},
-			"lastPushTimeStamp": "2018-11-11T00:55:11.936Z",
+			"lastPushTimeStamp": "2018-11-15T03:52:08.239Z",
 			"output": {
 				"AppClientSecret": "jljsnf0o361ah7fa9t84lt9j7mckbnh69lcvf0ibs6rb6b9crlg",
 				"UserPoolId": "us-east-1_gcSJMKHzj",
@@ -72,12 +72,27 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
 				"logicalId": "apiaccountattributes"
 			},
-			"lastPushTimeStamp": "2018-11-11T00:55:11.921Z",
+			"lastPushTimeStamp": "2018-11-15T03:52:08.249Z",
 			"output": {
 				"ApiName": "accountattributes",
 				"RootUrl": "https://wg9aumihxh.execute-api.us-east-1.amazonaws.com/Prod"
 			},
 			"lastPushDirHash": "s3bHeRyE6B10dTbCsmMumdtZK1c="
+		},
+		"getapartments": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
+				"logicalId": "apigetapartments"
+			},
+			"lastPushTimeStamp": "2018-11-15T03:52:08.277Z",
+			"output": {
+				"ApiName": "getapartments",
+				"RootUrl": "https://8u7cjwsyhb.execute-api.us-east-1.amazonaws.com/Prod"
+			},
+			"lastPushDirHash": "/sVshT2ll8eXJ9ueLTWjKh6oW9c="
 		}
 	}
 }

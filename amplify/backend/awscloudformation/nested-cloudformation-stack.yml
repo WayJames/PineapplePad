@@ -154,6 +154,13 @@
 					}
 				}
 			}
+		},
+		"apigetapartments": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
+				"Parameters": {}
+			}
 		}
 	},
 	"Outputs": {

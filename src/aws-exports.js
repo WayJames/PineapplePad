@@ -11,6 +11,11 @@ const awsmobile =  {
             "name": "accountattributes",
             "endpoint": "https://wg9aumihxh.execute-api.us-east-1.amazonaws.com/Prod",
             "region": "us-east-1"
+        },
+        {
+            "name": "getapartments",
+            "endpoint": "https://8u7cjwsyhb.execute-api.us-east-1.amazonaws.com/Prod",
+            "region": "us-east-1"
         }
     ]
 };
