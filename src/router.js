@@ -10,7 +10,7 @@ import GatherApartmentPrefs from './views/GatherApartmentPrefs.vue'
 import Dashboard from './views/Dashboard.vue'
 import store from './store'
 
-import {Auth} from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 
 /* eslint-disable */
 const AUTH_LEVEL_NONE = 0
@@ -27,50 +27,50 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      meta: {authLevel: AUTH_LEVEL_NONE},
+      meta: { authLevel: AUTH_LEVEL_NONE },
       component: Home
     },
     {
       path: '/login',
       name: 'login',
-      meta: {authLevel: AUTH_LEVEL_NONE},
+      meta: { authLevel: AUTH_LEVEL_NONE },
       component: Login
     },
     {
       path: '/register',
       name: 'register',
-      meta: {authLevel: AUTH_LEVEL_NONE},
+      meta: { authLevel: AUTH_LEVEL_NONE },
       component: SignUp
     },
     {
       path: '/profile',
       name: 'profile',
       component: Profile,
-      meta: {authLevel: AUTH_LEVEL_USER}
+      meta: { authLevel: AUTH_LEVEL_USER }
     },
     {
       path: '/forcepasswordchange',
       name: 'force_password_change',
-      meta: {authLevel: AUTH_LEVEL_NONE},
+      meta: { authLevel: AUTH_LEVEL_NONE },
       component: ForcePasswordChange
     },
     {
       path: '/register/confirm/:username',
       name: 'confirm_account',
       component: ConfirmAccount,
-      meta: {authLevel: AUTH_LEVEL_NONE}
+      meta: { authLevel: AUTH_LEVEL_NONE }
     },
     {
       path: '/register/collectdata',
       name: 'gather_user_data',
       component: GatherApartmentPrefs,
-      meta: {authLevel: AUTH_LEVEL_USER}
+      meta: { authLevel: AUTH_LEVEL_USER }
     },
     {
       path: '/dash',
       name: 'dashboard',
       component: Dashboard,
-      meta: {authLevel: AUTH_LEVEL_USER}
+      meta: { authLevel: AUTH_LEVEL_USER }
     }
   ]
 })
@@ -81,14 +81,16 @@ router.beforeEach((to, from, next) => {
     if (store.getters.userSignedIn) {
       next()
     } else {
-      Auth.currentAuthenticatedUser().then(usr => {
-        next()
-      }).catch(() => {
-        next({
-          name: 'login',
-          query: { redirect: to.fullPath }
+      Auth.currentAuthenticatedUser()
+        .then(usr => {
+          next()
         })
-      })
+        .catch(() => {
+          next({
+            name: 'login',
+            query: { redirect: to.fullPath }
+          })
+        })
     }
   } else {
     next()
