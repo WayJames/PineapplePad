@@ -2,6 +2,13 @@ import { Auth, API } from 'aws-amplify'
 import router from '@/router'
 
 export default {
+  async getApartments (context) {
+    API.get('getapartments', '/Dev/apartments').then(resp => {
+      console.log(resp)
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   async signOut ({ commit }) {
     await Auth.signOut()
     commit('setDisplayApartmentPrefsWarning', false)
@@ -11,9 +18,10 @@ export default {
   async updateUser ({ commit, dispatch }) {
     try {
       let user = await Auth.currentAuthenticatedUser()
-      let prefs = await dispatch('getApartmentPrefs')
-      if (prefs.length === 0) {
+      if (user.attributes['custom:apartmentPrefsSet'] !== '1') {
         commit('setDisplayApartmentPrefsWarning', true)
+      } else {
+        commit('setDisplayApartmentPrefsWarning', false)
       }
       commit('setUser', user)
       return user
@@ -135,16 +143,21 @@ export default {
       throw err
     }
   },
-  async submitApartmentPrefs ({commit}, attributes) {
+  async submitApartmentPrefs ({commit, state}, attributes) {
     try {
       // let user = await Auth.currentUserPoolUser()
       // console.log(user)
       // attributes.userId = user.username
       let resp = await API.put('accountattributes', '/items', {body: attributes})
+      await Auth.updateUserAttributes(state.user, {
+        'custom:apartmentPrefsSet': '1'
+      })
       router.push({name: 'profile'})
       commit('setDisplayApartmentPrefsWarning', false)
       return resp
     } catch (err) {
+      console.log('submit apartment prefs error')
+      console.log(err)
       throw err
     }
   },

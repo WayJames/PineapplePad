@@ -19,6 +19,9 @@
         <a class="navbar-item" @click="$store.dispatch('signOut')">
           Sign Out
         </a>
+        <a class="navbar-item" @click="$store.dispatch('getApartments')">
+          get apartments
+        </a>
       </div>
     </div>
   </div>
