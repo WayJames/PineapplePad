@@ -8,11 +8,6 @@ const awsmobile =  {
     "aws_user_pools_web_client_id": "461niai4idt4k8krvl3pg0fkne",
     "aws_cloud_logic_custom": [
         {
-            "name": "accountattributes",
-            "endpoint": "https://wg9aumihxh.execute-api.us-east-1.amazonaws.com/Prod",
-            "region": "us-east-1"
-        },
-        {
             "name": "getapartments",
             "endpoint": "https://8u7cjwsyhb.execute-api.us-east-1.amazonaws.com/Prod",
             "region": "us-east-1"

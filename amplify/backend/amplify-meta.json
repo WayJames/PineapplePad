@@ -11,28 +11,7 @@
 			"StackId": "arn:aws:cloudformation:us-east-1:288739247229:stack/ineapplead-20181103123447/ea2c3ba0-dfa7-11e8-9efa-50d501eb4c17"
 		}
 	},
-	"function": {
-		"accountattributesCRUD": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [],
-			"lastBuildTimeStamp": "2018-11-08T02:46:08.322Z",
-			"lastPackageTimeStamp": "2018-11-08T06:53:50.886Z",
-			"distZipFilename": "accountattributesCRUD-1541660024-latest-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesCRUD-cloudformation-template.json",
-				"logicalId": "functionaccountattributesCRUD"
-			},
-			"lastPushTimeStamp": "2018-11-15T03:52:08.226Z",
-			"output": {
-				"Region": "us-east-1",
-				"Arn": "arn:aws:lambda:us-east-1:288739247229:function:accountattributesCRUD",
-				"Name": "accountattributesCRUD"
-			},
-			"lastPushDirHash": "p3Q5pTTDBSNij+ASug+SjpMBq24="
-		}
-	},
+	"function": {},
 	"auth": {
 		"pineapplepad": {
 			"service": "Cognito",
@@ -41,7 +20,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"logicalId": "authpineapplepad"
 			},
-			"lastPushTimeStamp": "2018-11-15T03:52:08.239Z",
+			"lastPushTimeStamp": "2019-01-24T23:51:41.299Z",
 			"output": {
 				"AppClientSecret": "jljsnf0o361ah7fa9t84lt9j7mckbnh69lcvf0ibs6rb6b9crlg",
 				"UserPoolId": "us-east-1_gcSJMKHzj",
@@ -55,30 +34,6 @@
 		}
 	},
 	"api": {
-		"accountattributes": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "accountattributesCRUD",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
-				"logicalId": "apiaccountattributes"
-			},
-			"lastPushTimeStamp": "2018-11-15T03:52:08.249Z",
-			"output": {
-				"ApiName": "accountattributes",
-				"RootUrl": "https://wg9aumihxh.execute-api.us-east-1.amazonaws.com/Prod"
-			},
-			"lastPushDirHash": "s3bHeRyE6B10dTbCsmMumdtZK1c="
-		},
 		"getapartments": {
 			"service": "API Gateway",
 			"providerPlugin": "awscloudformation",
@@ -87,7 +42,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
 				"logicalId": "apigetapartments"
 			},
-			"lastPushTimeStamp": "2018-11-15T03:52:08.277Z",
+			"lastPushTimeStamp": "2019-01-24T23:51:41.309Z",
 			"output": {
 				"ApiName": "getapartments",
 				"RootUrl": "https://8u7cjwsyhb.execute-api.us-east-1.amazonaws.com/Prod"

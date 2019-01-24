@@ -64,7 +64,7 @@ app.get(path + hashKeyPath, function (req, res) {
     try {
       condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ]
     } catch (err) {
-      res.json({error: 'Wrong column type ' + err})
+      res.json({ error: 'Wrong column type ' + err })
     }
   }
 
@@ -75,7 +75,7 @@ app.get(path + hashKeyPath, function (req, res) {
 
   dynamodb.query(queryParams, (err, data) => {
     if (err) {
-      res.json({error: 'Could not load items: ' + err})
+      res.json({ error: 'Could not load items: ' + err })
     } else {
       res.json(data.Items)
     }
@@ -95,14 +95,14 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
     try {
       params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType)
     } catch (err) {
-      res.json({error: 'Wrong column type ' + err})
+      res.json({ error: 'Wrong column type ' + err })
     }
   }
   if (hasSortKey) {
     try {
       params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType)
     } catch (err) {
-      res.json({error: 'Wrong column type ' + err})
+      res.json({ error: 'Wrong column type ' + err })
     }
   }
 
@@ -113,7 +113,7 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
 
   dynamodb.get(getItemParams, (err, data) => {
     if (err) {
-      res.json({error: 'Could not load items: ' + err.message})
+      res.json({ error: 'Could not load items: ' + err.message })
     } else {
       if (data.Item) {
         res.json(data.Item)
@@ -141,9 +141,9 @@ app.put(path, function (req, res) {
   }
   dynamodb.put(putItemParams, (err, data) => {
     if (err) {
-      res.json({error: err, url: req.url, body: req.body})
+      res.json({ error: err, url: req.url, body: req.body })
     } else {
-      res.json({success: 'put call succeed!', url: req.url, data: data})
+      res.json({ success: 'put call succeed!', url: req.url, data: data })
     }
   })
 })
@@ -163,9 +163,9 @@ app.post(path, function (req, res) {
   }
   dynamodb.put(putItemParams, (err, data) => {
     if (err) {
-      res.json({error: err, url: req.url, body: req.body})
+      res.json({ error: err, url: req.url, body: req.body })
     } else {
-      res.json({success: 'post call succeed!', url: req.url, data: data})
+      res.json({ success: 'post call succeed!', url: req.url, data: data })
     }
   })
 })
@@ -183,14 +183,14 @@ app.delete(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
     try {
       params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType)
     } catch (err) {
-      res.json({error: 'Wrong column type ' + err})
+      res.json({ error: 'Wrong column type ' + err })
     }
   }
   if (hasSortKey) {
     try {
       params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType)
     } catch (err) {
-      res.json({error: 'Wrong column type ' + err})
+      res.json({ error: 'Wrong column type ' + err })
     }
   }
 
@@ -200,9 +200,9 @@ app.delete(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
   }
   dynamodb.delete(removeItemParams, (err, data) => {
     if (err) {
-      res.json({error: err, url: req.url})
+      res.json({ error: err, url: req.url })
     } else {
-      res.json({url: req.url, data: data})
+      res.json({ url: req.url, data: data })
     }
   })
 })

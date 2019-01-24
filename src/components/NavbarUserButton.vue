@@ -9,19 +9,14 @@
       </a>
     </div>
     <div v-if="!!user" class="navbar-item has-dropdown is-hoverable">
-      <router-link :to="{name: 'dashboard'}" class="navbar-link">
-        Hey there, {{user.attributes.name}}!
-      </router-link>
+      <router-link
+        :to="{name: 'dashboard'}"
+        class="navbar-link"
+      >Hey there, {{user.attributes.name}}!</router-link>
       <div class="navbar-dropdown is-right is-boxed">
-        <router-link class="navbar-item" :to="{name: 'profile'}">
-          Edit Account Settings
-        </router-link>
-        <a class="navbar-item" @click="$store.dispatch('signOut')">
-          Sign Out
-        </a>
-        <a class="navbar-item" @click="$store.dispatch('getApartments')">
-          get apartments
-        </a>
+        <router-link class="navbar-item" :to="{name: 'profile'}">Edit Account Settings</router-link>
+        <a class="navbar-item" @click="$store.dispatch('signOut')">Sign Out</a>
+        <a class="navbar-item" @click="$store.dispatch('getApartments')">get apartments</a>
       </div>
     </div>
   </div>

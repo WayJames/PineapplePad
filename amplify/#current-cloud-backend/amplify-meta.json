@@ -55,30 +55,6 @@
 		}
 	},
 	"api": {
-		"accountattributes": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "accountattributesCRUD",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
-				"logicalId": "apiaccountattributes"
-			},
-			"lastPushTimeStamp": "2018-11-15T03:52:08.249Z",
-			"output": {
-				"ApiName": "accountattributes",
-				"RootUrl": "https://wg9aumihxh.execute-api.us-east-1.amazonaws.com/Prod"
-			},
-			"lastPushDirHash": "s3bHeRyE6B10dTbCsmMumdtZK1c="
-		},
 		"getapartments": {
 			"service": "API Gateway",
 			"providerPlugin": "awscloudformation",

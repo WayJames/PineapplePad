@@ -75,19 +75,19 @@ export default {
       throw err
     }
   },
-  async signUp ({commit}, args) {
+  async signUp ({ commit }, args) {
     try {
       let user = await Auth.signUp(args)
       if (!user.userConfirmed) {
         commit('storePasswordTemporarily', args.password)
-        router.push({name: 'confirm_account', params: {username: args.username}})
+        router.push({ name: 'confirm_account', params: { username: args.username } })
       }
       return user
     } catch (err) {
       throw err
     }
   },
-  async updateUserAttributes ({dispatch, state}, args) {
+  async updateUserAttributes ({ dispatch, state }, args) {
     try {
       Auth.updateUserAttributes(state.user, args)
       // We will return which contacts are verified so we can check
@@ -104,7 +104,7 @@ export default {
       throw err
     }
   },
-  async verifyEmailAddress ({state}, {code}) {
+  async verifyEmailAddress ({ state }, { code }) {
     try {
       await Auth.verifyCurrentUserAttributeSubmit('email', code)
       return await Auth.verifiedContact(state.user)
@@ -112,22 +112,22 @@ export default {
       throw err
     }
   },
-  async resendVerificationCode ({state}, {username}) {
+  async resendVerificationCode ({ state }, { username }) {
     try {
       return await Auth.resendSignUp(username)
     } catch (err) {
       throw err
     }
   },
-  async submitVerificationCode ({dispatch, state}, {username, code}) {
+  async submitVerificationCode ({ dispatch, state }, { username, code }) {
     try {
       let resp = await Auth.confirmSignUp(username, code)
       // Confirming sign up doesn't log the user in.
       // So we do this to seamlessly sign the user in behind the scenes
       if (state.passwordTemporaryStorage) {
         try {
-          await dispatch('signIn', {username, password: state.passwordTemporaryStorage})
-          router.push({name: 'gather_user_data'})
+          await dispatch('signIn', { username, password: state.passwordTemporaryStorage })
+          router.push({ name: 'gather_user_data' })
         } catch (err) {
           err.message = 'An unexpcted error occurred. Please contact us.'
           throw err
@@ -143,16 +143,16 @@ export default {
       throw err
     }
   },
-  async submitApartmentPrefs ({commit, state}, attributes) {
+  async submitApartmentPrefs ({ commit, state }, attributes) {
     try {
       // let user = await Auth.currentUserPoolUser()
       // console.log(user)
       // attributes.userId = user.username
-      let resp = await API.put('accountattributes', '/items', {body: attributes})
+      let resp = await API.put('accountattributes', '/items', { body: attributes })
       await Auth.updateUserAttributes(state.user, {
         'custom:apartmentPrefsSet': '1'
       })
-      router.push({name: 'profile'})
+      router.push({ name: 'profile' })
       commit('setDisplayApartmentPrefsWarning', false)
       return resp
     } catch (err) {
@@ -161,7 +161,7 @@ export default {
       throw err
     }
   },
-  async getApartmentPrefs ({commit}) {
+  async getApartmentPrefs ({ commit }) {
     let myInit = { headers: {}, response: true, queryStringParameters: {} }
     try {
       let resp = await API.get('accountattributes', '/items/userId', myInit)
@@ -172,6 +172,8 @@ export default {
       }
       return resp.data[0]
     } catch (err) {
+      console.log('Get apartment prefs error')
+      console.log(err)
       throw err
     }
   }

@@ -85,6 +85,13 @@
 				"Parameters": {}
 			}
 		},
+		"functionaccountattributes": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributes-cloudformation-template.json",
+				"Parameters": {}
+			}
+		},
 		"authpineapplepad": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
@@ -135,31 +142,31 @@
 				}
 			}
 		},
-		"apiaccountattributes": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
-				"Parameters": {
-					"functionaccountattributesCRUDName": {
-						"Fn::GetAtt": [
-							"functionaccountattributesCRUD",
-							"Outputs.Name"
-						]
-					},
-					"functionaccountattributesCRUDArn": {
-						"Fn::GetAtt": [
-							"functionaccountattributesCRUD",
-							"Outputs.Arn"
-						]
-					}
-				}
-			}
-		},
 		"apigetapartments": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
 				"Parameters": {}
+			}
+		},
+		"apiaccountattributes": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
+				"Parameters": {
+					"functionaccountattributesName": {
+						"Fn::GetAtt": [
+							"functionaccountattributes",
+							"Outputs.Name"
+						]
+					},
+					"functionaccountattributesArn": {
+						"Fn::GetAtt": [
+							"functionaccountattributes",
+							"Outputs.Arn"
+						]
+					}
+				}
 			}
 		}
 	},
