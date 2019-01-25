@@ -28,4 +28,4 @@ appsync-info.json
 aws-info.json
 project-info.json
 aws-exports.*
-amplify\#current-cloud-backend
+amplify/#current-cloud-backend
