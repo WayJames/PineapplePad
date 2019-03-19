@@ -1,0 +1,37 @@
+{
+    "function": {
+        "accountattributesCRUD": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "build": true
+        }
+    },
+    "auth": {
+        "pineapplepad": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "api": {
+        "getapartments": {
+            "service": "API Gateway",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": []
+        },
+        "accountattributesCRUD": {
+            "service": "API Gateway",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "accountattributesCRUD",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -82,14 +82,9 @@
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesCRUD-cloudformation-template.json",
-				"Parameters": {}
-			}
-		},
-		"functionaccountattributes": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributes-cloudformation-template.json",
-				"Parameters": {}
+				"Parameters": {
+					"env": "NONE"
+				}
 			}
 		},
 		"authpineapplepad": {
@@ -97,6 +92,24 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
+					"unauthRoleArn": {
+						"Fn::GetAtt": [
+							"UnauthRole",
+							"Arn"
+						]
+					},
 					"identityPoolName": "pineapplepad",
 					"allowUnauthenticatedIdentities": true,
 					"thirdPartyAuth": false,
@@ -136,9 +149,8 @@
 					"authSelections": "identityPoolAndUserPool",
 					"resourceName": "pineapplepad",
 					"unAuthRoleName": "ineapplead-20181103123447-unauthRole",
-					"authRoleName": "ineapplead-20181103123447-authRole",
 					"unAuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-unauthRole",
-					"authRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-authRole"
+					"env": "NONE"
 				}
 			}
 		},
@@ -146,26 +158,41 @@
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
-				"Parameters": {}
+				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"env": "NONE"
+				}
 			}
 		},
-		"apiaccountattributes": {
+		"apiaccountattributesCRUD": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributes-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributesCRUD-cloudformation-template.json",
 				"Parameters": {
-					"functionaccountattributesName": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"functionaccountattributesCRUDName": {
 						"Fn::GetAtt": [
-							"functionaccountattributes",
+							"functionaccountattributesCRUD",
 							"Outputs.Name"
 						]
 					},
-					"functionaccountattributesArn": {
+					"functionaccountattributesCRUDArn": {
 						"Fn::GetAtt": [
-							"functionaccountattributes",
+							"functionaccountattributesCRUD",
 							"Outputs.Arn"
 						]
-					}
+					},
+					"env": "NONE"
 				}
 			}
 		}

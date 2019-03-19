@@ -1,4 +1,22 @@
 {
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
     "identityPoolName": "pineapplepad",
     "allowUnauthenticatedIdentities": true,
     "thirdPartyAuth": false,
@@ -53,7 +71,5 @@
     "authSelections": "identityPoolAndUserPool",
     "resourceName": "pineapplepad",
     "unAuthRoleName": "ineapplead-20181103123447-unauthRole",
-    "authRoleName": "ineapplead-20181103123447-authRole",
-    "unAuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-unauthRole",
-    "authRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-authRole"
+    "unAuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-unauthRole"
 }

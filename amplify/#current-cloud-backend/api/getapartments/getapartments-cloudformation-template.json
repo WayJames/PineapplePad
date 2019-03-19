@@ -4,10 +4,28 @@
     
     
     "Parameters": {
-        
-    
+        "authRoleName": {
+            "Type":  "String"
         },
+        "unauthRoleName": {
+            "Type":  "String"
+        },
+        "env": {
+            "Type": "String"
+        }
     
+    
+    },
+     "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
+    },
     "Resources": {
         
         
@@ -19,7 +37,7 @@
             "Properties": {
               "PolicyName": "PolicyAPIGWpineapplepadfaf19ed1auth",
               "Roles": [
-                "ineapplead-20181103123447-authRole"
+                {"Ref": "authRoleName"}
               ],
               "PolicyDocument": {
                 "Version": "2012-10-17",
@@ -50,7 +68,17 @@
                             {
                               "Ref": "pineapplepadfaf19ed1"
                             },
-                            "/Prod/GET",
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                            "/GET",
                             "/Dev/apartments/*"
                           ]
                         ]
@@ -71,7 +99,17 @@
                             {
                               "Ref": "pineapplepadfaf19ed1"
                             },
-                            "/Prod/GET",
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                            "/GET",
                             "/Dev/apartments"
                           ]
                         ]
@@ -92,7 +130,17 @@
                             {
                               "Ref": "pineapplepadfaf19ed1"
                             },
-                            "/Prod/HEAD",
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                            "/HEAD",
                             "/Dev/apartments/*"
                           ]
                         ]
@@ -113,7 +161,17 @@
                             {
                               "Ref": "pineapplepadfaf19ed1"
                             },
-                            "/Prod/HEAD",
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                            "/HEAD",
                             "/Dev/apartments"
                           ]
                         ]
@@ -154,7 +212,23 @@
                   ]
                 ]
               },
-            "basePath": "/Prod",
+            "basePath": {
+              "Fn::If": [
+                "ShouldNotCreateEnvResources",
+                "/Prod",
+                {
+                  "Fn::Join": [
+                      "",
+                      [
+                          "/",
+                          {
+                              "Ref": "env"
+                          }
+                      ]
+                  ]
+                } 
+              ]
+            },
             "schemes": [
               "https"
             ],
@@ -439,13 +513,19 @@
         
         
         
-        
-        
       "DeploymentAPIGWpineapplepadfaf19ed1": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
-          "StageName": "Prod",
+          "StageName": {
+            "Fn::If": [
+              "ShouldNotCreateEnvResources",
+              "Prod", 
+              {
+                "Ref": "env"
+              } 
+            ]
+          },
           "RestApiId": {
             "Ref": "pineapplepadfaf19ed1"
           }
@@ -455,7 +535,7 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "pineapplepadfaf19ed1"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/Prod"]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "pineapplepadfaf19ed1"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
         },
         "ApiName": {
           "Description": "API Friendly name",

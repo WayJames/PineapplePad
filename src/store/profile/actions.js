@@ -148,12 +148,14 @@ export default {
       // let user = await Auth.currentUserPoolUser()
       // console.log(user)
       // attributes.userId = user.username
-      let resp = await API.put('accountattributes', '/items', { body: attributes })
+      let resp = await API.put('accountattributesCRUD', '/items', { body: attributes })
       await Auth.updateUserAttributes(state.user, {
         'custom:apartmentPrefsSet': '1'
       })
       router.push({ name: 'profile' })
       commit('setDisplayApartmentPrefsWarning', false)
+      console.log('Apartment prefs updated')
+      console.log(resp)
       return resp
     } catch (err) {
       console.log('submit apartment prefs error')
@@ -164,7 +166,7 @@ export default {
   async getApartmentPrefs ({ commit }) {
     let myInit = { headers: {}, response: true, queryStringParameters: {} }
     try {
-      let resp = await API.get('accountattributes', '/items/userId', myInit)
+      let resp = await API.get('accountattributesCRUD', '/items/userId', myInit)
       if (resp.data.length) {
         commit('setApartmentPrefs', resp.data[0])
       } else {

@@ -1,0 +1,28 @@
+{
+    "paths": [
+        {
+            "name": "/Dev/apartments",
+            "lambdaArn": "arn:aws:lambda:us-east-1:288739247229:function:pineapplepad-apartment-api-dev-getApartments",
+            "lambdaFunction": "pineapplepad-apartment-api-dev-getApartments",
+            "privacy": {
+                "private": true,
+                "auth": "r"
+            }
+        }
+    ],
+    "resourceName": "getapartments",
+    "apiName": "pineapplepadfaf19ed1",
+    "functionArns": [
+        {
+            "lambdaFunction": "pineapplepad-apartment-api-dev-getApartments",
+            "lambdaArn": "arn:aws:lambda:us-east-1:288739247229:function:pineapplepad-apartment-api-dev-getApartments"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "ineapplead-20181103123447-authRole",
+        "unAuthRoleName": "ineapplead-20181103123447-unauthRole"
+    },
+    "dependsOn": []
+}

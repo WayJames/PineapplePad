@@ -1,13 +1,34 @@
 {
 	"AWSTemplateFormatVersion": "2010-09-09",
 	"Description": "Lambda resource stack creation using Amplify CLI",
-	"Parameters": {},
+	"Parameters": {
+		"env": {
+			"Type": "String"
+		}
+	},
 	"Resources": {
 		"LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
 			"Properties": {
 				"Handler": "index.handler",
-				"FunctionName": "accountattributesCRUD",
+				"FunctionName": {
+					"Fn::If": [
+						"ShouldNotCreateEnvResources",
+						"accountattributesCRUD",
+						{
+							"Fn::Join": [
+								"",
+								[
+									"accountattributesCRUD",
+									"-",
+									{
+										"Ref": "env"
+									}
+								]
+							]
+						}
+					]
+				},
 				"Role": {
 					"Fn::GetAtt": [
 						"LambdaExecutionRole",
@@ -18,14 +39,38 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "ineapplead-20181103123447-deployment",
-					"S3Key": "amplify-builds/accountattributesCRUD-1541660024-latest-build.zip"
+					"S3Key": "amplify-builds/accountattributesCRUD-1548375107-latest-build.zip"
+				},
+				"Environment": {
+					"Variables": {
+						"ENV": {
+							"Ref": "env"
+						}
+					}
 				}
 			}
 		},
 		"LambdaExecutionRole": {
 			"Type": "AWS::IAM::Role",
 			"Properties": {
-				"RoleName": "pineapplepadLambdaRole84827f74",
+				"RoleName": {
+					"Fn::If": [
+						"ShouldNotCreateEnvResources",
+						"pineapplepadLambdaRolea43b230b",
+						{
+							"Fn::Join": [
+								"",
+								[
+									"pineapplepadLambdaRolea43b230b",
+									"-",
+									{
+										"Ref": "env"
+									}
+								]
+							]
+						}
+					]
+				},
 				"AssumeRolePolicyDocument": {
 					"Version": "2012-10-17",
 					"Statement": [
@@ -120,6 +165,16 @@
 			"Value": {
 				"Ref": "AWS::Region"
 			}
+		}
+	},
+	"Conditions": {
+		"ShouldNotCreateEnvResources": {
+			"Fn::Equals": [
+				{
+					"Ref": "env"
+				},
+				"NONE"
+			]
 		}
 	}
 }
