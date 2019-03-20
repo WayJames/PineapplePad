@@ -27,19 +27,19 @@
 				}
 			],
 			"lastBuildTimeStamp": "2019-03-20T21:03:49.806Z",
-			"lastPackageTimeStamp": "2019-03-20T21:03:56.564Z",
-			"distZipFilename": "accountattributescrud-1553115829-latest-build.zip",
+			"lastPackageTimeStamp": "2019-03-20T21:28:18.899Z",
+			"distZipFilename": "accountattributescrud-1553117292-latest-build.zip",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributescrud-cloudformation-template.json",
 				"logicalId": "functionaccountattributescrud"
 			},
-			"lastPushTimeStamp": "2019-03-20T21:06:39.756Z",
+			"lastPushTimeStamp": "2019-03-20T21:29:30.629Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:288739247229:function:accountattributescrud",
 				"Name": "accountattributescrud"
 			},
-			"lastPushDirHash": "nVmgM55dPIy+SVnbh5bQcRNnzH4="
+			"lastPushDirHash": "SNywIDKS2SIm9NbG6z3bcHY+m3Q="
 		}
 	},
 	"auth": {
@@ -50,7 +50,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"logicalId": "authpineapplepad"
 			},
-			"lastPushTimeStamp": "2019-03-20T21:06:39.729Z",
+			"lastPushTimeStamp": "2019-03-20T21:29:30.600Z",
 			"output": {
 				"AppClientSecret": "1jrmvbh9760a48qa5igt68dn2j5jkfvvc0e0k1ao4fku7omrh1p6",
 				"UserPoolId": "us-east-1_JCATNC5JL",
@@ -72,7 +72,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
 				"logicalId": "apigetapartments"
 			},
-			"lastPushTimeStamp": "2019-03-20T21:06:39.738Z",
+			"lastPushTimeStamp": "2019-03-20T21:29:30.608Z",
 			"output": {
 				"ApiName": "getapartments",
 				"RootUrl": "https://8u7cjwsyhb.execute-api.us-east-1.amazonaws.com/Prod"
@@ -96,7 +96,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributescrud-cloudformation-template.json",
 				"logicalId": "apiaccountattributescrud"
 			},
-			"lastPushTimeStamp": "2019-03-20T21:06:39.756Z",
+			"lastPushTimeStamp": "2019-03-20T21:29:30.614Z",
 			"output": {
 				"ApiName": "accountattributescrud",
 				"RootUrl": "https://0a5x45kbhc.execute-api.us-east-1.amazonaws.com/Prod"
@@ -112,7 +112,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/storage/accountattributes-cloudformation-template.json",
 				"logicalId": "storageaccountattributes"
 			},
-			"lastPushTimeStamp": "2019-03-20T21:06:39.756Z",
+			"lastPushTimeStamp": "2019-03-20T21:29:30.621Z",
 			"output": {
 				"PartitionKeyName": "userId",
 				"Region": "us-east-1",
