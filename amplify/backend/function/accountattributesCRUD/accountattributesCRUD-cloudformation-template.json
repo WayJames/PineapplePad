@@ -4,22 +4,44 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"storageaccountattributesName": {
+			"Type": "String",
+			"Default": "storageaccountattributesName"
+		},
+		"storageaccountattributesArn": {
+			"Type": "String",
+			"Default": "storageaccountattributesArn"
+		}
+	},
+	"Conditions": {
+		"ShouldNotCreateEnvResources": {
+			"Fn::Equals": [
+				{
+					"Ref": "env"
+				},
+				"NONE"
+			]
 		}
 	},
 	"Resources": {
 		"LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
+			"Metadata": {
+				"aws:asset:path": "./src",
+				"aws:asset:property": "Code"
+			},
 			"Properties": {
 				"Handler": "index.handler",
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"accountattributesCRUD",
+						"accountattributescrud",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"accountattributesCRUD",
+									"accountattributescrud",
 									"-",
 									{
 										"Ref": "env"
@@ -28,6 +50,13 @@
 							]
 						}
 					]
+				},
+				"Environment": {
+					"Variables": {
+						"ENV": {
+							"Ref": "env"
+						}
+					}
 				},
 				"Role": {
 					"Fn::GetAtt": [
@@ -39,14 +68,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "ineapplead-20181103123447-deployment",
-					"S3Key": "amplify-builds/accountattributesCRUD-1548375107-latest-build.zip"
-				},
-				"Environment": {
-					"Variables": {
-						"ENV": {
-							"Ref": "env"
-						}
-					}
+					"S3Key": "amplify-builds/accountattributescrud-1553115829-latest-build.zip"
 				}
 			}
 		},
@@ -56,12 +78,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"pineapplepadLambdaRolea43b230b",
+						"pineapplepadLambdaRolec9e5b778",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"pineapplepadLambdaRolea43b230b",
+									"pineapplepadLambdaRolec9e5b778",
 									"-",
 									{
 										"Ref": "env"
@@ -139,7 +161,9 @@
 								"dynamodb:DeleteItem"
 							],
 							"Resource": [
-								"arn:aws:dynamodb:us-east-1:288739247229:table/pineapplepad-mobilehub-1354166167-accountattributes"
+								{
+									"Ref": "storageaccountattributesArn"
+								}
 							]
 						}
 					]
@@ -165,16 +189,6 @@
 			"Value": {
 				"Ref": "AWS::Region"
 			}
-		}
-	},
-	"Conditions": {
-		"ShouldNotCreateEnvResources": {
-			"Fn::Equals": [
-				{
-					"Ref": "env"
-				},
-				"NONE"
-			]
 		}
 	}
 }

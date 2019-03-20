@@ -1,37 +1,52 @@
 {
-    "function": {
-        "accountattributesCRUD": {
-            "service": "Lambda",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "build": true
-        }
-    },
-    "auth": {
-        "pineapplepad": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation"
-        }
-    },
-    "api": {
-        "getapartments": {
-            "service": "API Gateway",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": []
-        },
-        "accountattributesCRUD": {
-            "service": "API Gateway",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [
-                {
-                    "category": "function",
-                    "resourceName": "accountattributesCRUD",
-                    "attributes": [
-                        "Name",
-                        "Arn"
-                    ]
-                }
-            ]
-        }
-    }
+	"function": {
+		"accountattributescrud": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "accountattributes",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	},
+	"auth": {
+		"pineapplepad": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"api": {
+		"getapartments": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		},
+		"accountattributescrud": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "accountattributescrud",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	},
+	"storage": {
+		"accountattributes": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
+		}
+	}
 }

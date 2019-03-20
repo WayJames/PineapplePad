@@ -15,15 +15,15 @@
         },
     
     
-          "functionaccountattributesCRUDName": {
+          "functionaccountattributescrudName": {
             "Type": "String",
-            "Default": "functionaccountattributesCRUDName"
+            "Default": "functionaccountattributescrudName"
           },
         
           
-          "functionaccountattributesCRUDArn": {
+          "functionaccountattributescrudArn": {
             "Type": "String",
-            "Default": "functionaccountattributesCRUDArn"
+            "Default": "functionaccountattributescrudArn"
           }
         
           
@@ -43,13 +43,13 @@
     "Resources": {
         
         
-        "PolicyAPIGWpineapplepad87e49984auth": {
+        "PolicyAPIGWaccountattributescrudauth": {
             "DependsOn": [
-              "pineapplepad87e49984"
+              "accountattributescrud"
             ],
             "Type": "AWS::IAM::Policy",
             "Properties": {
-              "PolicyName": "PolicyAPIGWpineapplepad87e49984auth",
+              "PolicyName": "PolicyAPIGWaccountattributescrudauth",
               "Roles": [
                 {"Ref": "authRoleName"}
               ],
@@ -79,7 +79,7 @@
                             },
                             ":",
                             {
-                              "Ref": "pineapplepad87e49984"
+                              "Ref": "accountattributescrud"
                             },
                             "/",
                             {
@@ -110,7 +110,7 @@
                             },
                             ":",
                             {
-                              "Ref": "pineapplepad87e49984"
+                              "Ref": "accountattributescrud"
                             },
                             "/",
                             {
@@ -141,16 +141,16 @@
           },
         
         
-      "pineapplepad87e49984": {
+      "accountattributescrud": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "pineapplepad87e49984",
+          "Name": "accountattributescrud",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "pineapplepad87e49984"
+              "title": "accountattributescrud"
             },
             "host": {
                 "Fn::Join": [
@@ -278,7 +278,7 @@
                             
                             {
                                 
-                                "Ref": "functionaccountattributesCRUDArn"
+                                "Ref": "functionaccountattributescrudArn"
                             },
                             
                             "/invocations"
@@ -383,7 +383,7 @@
                           
                           {
                             
-                            "Ref": "functionaccountattributesCRUDArn"
+                            "Ref": "functionaccountattributescrudArn"
                           },
                           
                           "/invocations"
@@ -440,12 +440,12 @@
                   
         
         
-        "functionaccountattributesCRUDPermissionpineapplepad87e49984": {
+        "functionaccountattributescrudPermissionaccountattributescrud": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionaccountattributesCRUDName"
+                        "Ref":  "functionaccountattributescrudName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -464,7 +464,7 @@
                             },
                             ":",
                             {
-                                "Ref": "pineapplepad87e49984"
+                                "Ref": "accountattributescrud"
                             },
                             "/*/*/*"
                         ]
@@ -475,7 +475,7 @@
         
         
         
-      "DeploymentAPIGWpineapplepad87e49984": {
+      "DeploymentAPIGWaccountattributescrud": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
@@ -489,7 +489,7 @@
             ]
           },
           "RestApiId": {
-            "Ref": "pineapplepad87e49984"
+            "Ref": "accountattributescrud"
           }
         }
       }
@@ -497,11 +497,11 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "pineapplepad87e49984"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "accountattributescrud"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
         },
         "ApiName": {
           "Description": "API Friendly name",
-          "Value": "accountattributesCRUD"
+          "Value": "accountattributescrud"
         }
     }
   }

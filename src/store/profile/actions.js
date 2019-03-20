@@ -148,7 +148,7 @@ export default {
       // let user = await Auth.currentUserPoolUser()
       // console.log(user)
       // attributes.userId = user.username
-      let resp = await API.put('accountattributesCRUD', '/items', { body: attributes })
+      let resp = await API.put('accountattributescrud', '/items', { body: attributes })
       await Auth.updateUserAttributes(state.user, {
         'custom:apartmentPrefsSet': '1'
       })
@@ -166,7 +166,7 @@ export default {
   async getApartmentPrefs ({ commit }) {
     let myInit = { headers: {}, response: true, queryStringParameters: {} }
     try {
-      let resp = await API.get('accountattributesCRUD', '/items/userId', myInit)
+      let resp = await API.get('accountattributescrud', '/items/userId', myInit)
       if (resp.data.length) {
         commit('setApartmentPrefs', resp.data[0])
       } else {

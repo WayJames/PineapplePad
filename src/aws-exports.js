@@ -2,10 +2,10 @@
 
 const awsmobile = {
     "aws_project_region": "us-east-1",
-    "aws_cognito_identity_pool_id": "us-east-1:9bdd2553-3ce8-4e7a-a4de-c925a76c430d",
+    "aws_cognito_identity_pool_id": "us-east-1:66be60cb-0333-488c-b9eb-f4cbfcf84045",
     "aws_cognito_region": "us-east-1",
-    "aws_user_pools_id": "us-east-1_EImgUnZdP",
-    "aws_user_pools_web_client_id": "ekfumrekbrlok0osuhtpv1h9o",
+    "aws_user_pools_id": "us-east-1_JCATNC5JL",
+    "aws_user_pools_web_client_id": "1hkjqh9tu9qcj8n9c0mh1f2vfv",
     "aws_cloud_logic_custom": [
         {
             "name": "getapartments",
@@ -13,8 +13,15 @@ const awsmobile = {
             "region": "us-east-1"
         },
         {
-            "name": "accountattributesCRUD",
-            "endpoint": "https://6nqxqlx0qk.execute-api.us-east-1.amazonaws.com/Prod",
+            "name": "accountattributescrud",
+            "endpoint": "https://0a5x45kbhc.execute-api.us-east-1.amazonaws.com/Prod",
+            "region": "us-east-1"
+        }
+    ],
+    "aws_dynamodb_all_tables_region": "us-east-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "accountattributes",
             "region": "us-east-1"
         }
     ]

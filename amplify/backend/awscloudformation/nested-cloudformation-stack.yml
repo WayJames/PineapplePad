@@ -78,11 +78,23 @@
 				}
 			}
 		},
-		"functionaccountattributesCRUD": {
+		"functionaccountattributescrud": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributesCRUD-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributescrud-cloudformation-template.json",
 				"Parameters": {
+					"storageaccountattributesName": {
+						"Fn::GetAtt": [
+							"storageaccountattributes",
+							"Outputs.Name"
+						]
+					},
+					"storageaccountattributesArn": {
+						"Fn::GetAtt": [
+							"storageaccountattributes",
+							"Outputs.Arn"
+						]
+					},
 					"env": "NONE"
 				}
 			}
@@ -92,24 +104,6 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"Parameters": {
-					"authRoleName": {
-						"Ref": "AuthRoleName"
-					},
-					"unauthRoleName": {
-						"Ref": "UnauthRoleName"
-					},
-					"authRoleArn": {
-						"Fn::GetAtt": [
-							"AuthRole",
-							"Arn"
-						]
-					},
-					"unauthRoleArn": {
-						"Fn::GetAtt": [
-							"UnauthRole",
-							"Arn"
-						]
-					},
 					"identityPoolName": "pineapplepad",
 					"allowUnauthenticatedIdentities": true,
 					"thirdPartyAuth": false,
@@ -132,7 +126,7 @@
 					"defaultPasswordPolicy": false,
 					"passwordPolicyMinLength": 8,
 					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
-					"requiredAttributes": "name,phone_number,email",
+					"requiredAttributes": "email",
 					"userpoolClientName": "pineapplepad_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
@@ -148,8 +142,24 @@
 					"useDefault": "manual",
 					"authSelections": "identityPoolAndUserPool",
 					"resourceName": "pineapplepad",
-					"unAuthRoleName": "ineapplead-20181103123447-unauthRole",
-					"unAuthRoleArn": "arn:aws:iam::288739247229:role/ineapplead-20181103123447-unauthRole",
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
+					"unauthRoleArn": {
+						"Fn::GetAtt": [
+							"UnauthRole",
+							"Arn"
+						]
+					},
 					"env": "NONE"
 				}
 			}
@@ -169,10 +179,10 @@
 				}
 			}
 		},
-		"apiaccountattributesCRUD": {
+		"apiaccountattributescrud": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributesCRUD-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributescrud-cloudformation-template.json",
 				"Parameters": {
 					"authRoleName": {
 						"Ref": "AuthRoleName"
@@ -180,18 +190,30 @@
 					"unauthRoleName": {
 						"Ref": "UnauthRoleName"
 					},
-					"functionaccountattributesCRUDName": {
+					"functionaccountattributescrudName": {
 						"Fn::GetAtt": [
-							"functionaccountattributesCRUD",
+							"functionaccountattributescrud",
 							"Outputs.Name"
 						]
 					},
-					"functionaccountattributesCRUDArn": {
+					"functionaccountattributescrudArn": {
 						"Fn::GetAtt": [
-							"functionaccountattributesCRUD",
+							"functionaccountattributescrud",
 							"Outputs.Arn"
 						]
 					},
+					"env": "NONE"
+				}
+			}
+		},
+		"storageaccountattributes": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/storage/accountattributes-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "accountattributes",
+					"partitionKeyName": "userId",
+					"partitionKeyType": "S",
 					"env": "NONE"
 				}
 			}
