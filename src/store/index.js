@@ -15,7 +15,7 @@ export default new Vuex.Store({
     apartmentPrefs: {},
     displayApartmentPrefsWarning: false
   },
-  actions: {...accountActions},
+  actions: { ...accountActions },
   // actions,
   getters,
   mutations
