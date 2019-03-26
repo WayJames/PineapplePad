@@ -9,6 +9,11 @@
             "UnauthRoleName": "ineapplead-20181103123447-unauthRole",
             "StackName": "ineapplead-20181103123447",
             "StackId": "arn:aws:cloudformation:us-east-1:288739247229:stack/ineapplead-20181103123447/ea2c3ba0-dfa7-11e8-9efa-50d501eb4c17"
+        },
+        "categories": {
+            "auth": {
+                "pineapplepad": {}
+            }
         }
     }
 }

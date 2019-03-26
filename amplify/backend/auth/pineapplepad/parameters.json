@@ -31,6 +31,7 @@
         "Requires Symbols"
     ],
     "requiredAttributes": [
+        "name",
         "email"
     ],
     "userpoolClientName": "pineapplepad_app_client",

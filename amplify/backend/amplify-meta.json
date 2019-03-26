@@ -26,20 +26,16 @@
 					]
 				}
 			],
-			"lastBuildTimeStamp": "2019-03-20T21:03:49.806Z",
-			"lastPackageTimeStamp": "2019-03-20T21:28:18.899Z",
-			"distZipFilename": "accountattributescrud-1553117292-latest-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributescrud-cloudformation-template.json",
-				"logicalId": "functionaccountattributescrud"
-			},
-			"lastPushTimeStamp": "2019-03-20T21:29:30.629Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:288739247229:function:accountattributescrud",
 				"Name": "accountattributescrud"
 			},
-			"lastPushDirHash": "SNywIDKS2SIm9NbG6z3bcHY+m3Q="
+			"lastPushTimeStamp": "2019-03-26T07:30:05.185Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/function/accountattributescrud-cloudformation-template.json",
+				"logicalId": "functionaccountattributescrud"
+			}
 		}
 	},
 	"auth": {
@@ -50,17 +46,17 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/auth/pineapplepad-cloudformation-template.yml",
 				"logicalId": "authpineapplepad"
 			},
-			"lastPushTimeStamp": "2019-03-20T21:29:30.600Z",
+			"lastPushTimeStamp": "2019-03-26T07:30:05.218Z",
 			"output": {
-				"AppClientSecret": "1jrmvbh9760a48qa5igt68dn2j5jkfvvc0e0k1ao4fku7omrh1p6",
-				"UserPoolId": "us-east-1_JCATNC5JL",
-				"AppClientIDWeb": "1hkjqh9tu9qcj8n9c0mh1f2vfv",
-				"AppClientID": "5e624th8tvnh2kjqh6ifqf49mp",
-				"IdentityPoolId": "us-east-1:66be60cb-0333-488c-b9eb-f4cbfcf84045",
+				"AppClientSecret": "1aljom7hc8kocrlqr6iq8051qoi87pp3loicqrkp5j6m1m6htcgs",
+				"UserPoolId": "us-east-1_jwwPt4eP0",
+				"AppClientIDWeb": "2r35hh4ldu65aqt7dhmtiosso7",
+				"AppClientID": "78e42tqdmepki8hnqrciqqmhpt",
+				"IdentityPoolId": "us-east-1:d65bef8c-4783-4ea8-bc4e-7f0a79ab49a6",
 				"IdentityPoolName": "pineapplepad",
 				"UserPoolName": "pineapplepad"
 			},
-			"lastPushDirHash": "HMfhrs6hNUARWyud2rdcXGAe8NU="
+			"lastPushDirHash": "M3xKmtF3KL6fhpFZaUXGk5yOLq0="
 		}
 	},
 	"api": {
@@ -68,16 +64,15 @@
 			"service": "API Gateway",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
-				"logicalId": "apigetapartments"
-			},
-			"lastPushTimeStamp": "2019-03-20T21:29:30.608Z",
 			"output": {
 				"ApiName": "getapartments",
 				"RootUrl": "https://8u7cjwsyhb.execute-api.us-east-1.amazonaws.com/Prod"
 			},
-			"lastPushDirHash": "pUOfwc+7VD+r86aUw3k7w+pMPBs="
+			"lastPushTimeStamp": "2019-03-26T07:30:05.199Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/getapartments-cloudformation-template.json",
+				"logicalId": "apigetapartments"
+			}
 		},
 		"accountattributescrud": {
 			"service": "API Gateway",
@@ -92,27 +87,21 @@
 					]
 				}
 			],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributescrud-cloudformation-template.json",
-				"logicalId": "apiaccountattributescrud"
-			},
-			"lastPushTimeStamp": "2019-03-20T21:29:30.614Z",
 			"output": {
 				"ApiName": "accountattributescrud",
 				"RootUrl": "https://0a5x45kbhc.execute-api.us-east-1.amazonaws.com/Prod"
 			},
-			"lastPushDirHash": "LT1FaMmhKi7PjgY4rvIRnYtuXx4="
+			"lastPushTimeStamp": "2019-03-26T07:30:05.205Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/api/accountattributescrud-cloudformation-template.json",
+				"logicalId": "apiaccountattributescrud"
+			}
 		}
 	},
 	"storage": {
 		"accountattributes": {
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/storage/accountattributes-cloudformation-template.json",
-				"logicalId": "storageaccountattributes"
-			},
-			"lastPushTimeStamp": "2019-03-20T21:29:30.621Z",
 			"output": {
 				"PartitionKeyName": "userId",
 				"Region": "us-east-1",
@@ -120,7 +109,11 @@
 				"PartitionKeyType": "S",
 				"Name": "accountattributes"
 			},
-			"lastPushDirHash": "IqCa+O3qx4NlpeTZWmlFhiTTGJs="
+			"lastPushTimeStamp": "2019-03-26T07:30:05.212Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/ineapplead-20181103123447-deployment/amplify-cfn-templates/storage/accountattributes-cloudformation-template.json",
+				"logicalId": "storageaccountattributes"
+			}
 		}
 	}
 }

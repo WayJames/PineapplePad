@@ -2,10 +2,10 @@
 
 const awsmobile = {
     "aws_project_region": "us-east-1",
-    "aws_cognito_identity_pool_id": "us-east-1:66be60cb-0333-488c-b9eb-f4cbfcf84045",
+    "aws_cognito_identity_pool_id": "us-east-1:d65bef8c-4783-4ea8-bc4e-7f0a79ab49a6",
     "aws_cognito_region": "us-east-1",
-    "aws_user_pools_id": "us-east-1_JCATNC5JL",
-    "aws_user_pools_web_client_id": "1hkjqh9tu9qcj8n9c0mh1f2vfv",
+    "aws_user_pools_id": "us-east-1_jwwPt4eP0",
+    "aws_user_pools_web_client_id": "2r35hh4ldu65aqt7dhmtiosso7",
     "aws_cloud_logic_custom": [
         {
             "name": "getapartments",

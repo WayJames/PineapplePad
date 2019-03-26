@@ -7,7 +7,7 @@ import exports from './aws-exports'
 import Buefy from 'buefy'
 import Amplify from 'aws-amplify'
 import * as VueGoogleMaps from 'vue2-google-maps'
-
+// window.LOG_LEVEL = 'DEBUG'
 Amplify.configure(exports)
 
 store.dispatch('updateUser')

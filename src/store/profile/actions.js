@@ -145,9 +145,10 @@ export default {
   },
   async submitApartmentPrefs ({ commit, state }, attributes) {
     try {
-      // let user = await Auth.currentUserPoolUser()
+      // let user = await Auth.currentCredentials()
       // console.log(user)
       // attributes.userId = user.username
+
       let resp = await API.put('accountattributescrud', '/items', { body: attributes })
       await Auth.updateUserAttributes(state.user, {
         'custom:apartmentPrefsSet': '1'
@@ -164,15 +165,15 @@ export default {
     }
   },
   async getApartmentPrefs ({ commit }) {
-    let myInit = { headers: {}, response: true, queryStringParameters: {} }
+    // let myInit = { headers: {}, response: true, queryStringParameters: {} }
     try {
-      let resp = await API.get('accountattributescrud', '/items/userId', myInit)
-      if (resp.data.length) {
-        commit('setApartmentPrefs', resp.data[0])
+      let resp = await API.get('accountattributescrud', '/items/userId')
+      if (resp.length) {
+        commit('setApartmentPrefs', resp[0])
       } else {
-        return resp.data
+        return resp
       }
-      return resp.data[0]
+      return resp[0]
     } catch (err) {
       console.log('Get apartment prefs error')
       console.log(err)
